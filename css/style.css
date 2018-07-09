@@ -1,0 +1,93 @@
+@font-face {
+    font-family: Oswald;
+    src: url(../font/Oswald.ttf);
+}
+
+@font-face {
+    font-family: SourceSans;
+    src: url(../font/SourceSansPro.ttf);
+}
+
+.text-left {
+    text-align: left;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.logo-style {
+    padding: 50px 5px 20px 5px;
+}
+
+.main-header {
+    font-family: Oswald;
+}
+
+.sub-header {
+    font-family: SourceSans;
+}
+
+.info-div {
+    background-size: cover;
+    background-image: url("../img/gold.jpg");
+}
+
+.info-col {
+    padding: 40px 30px;
+}
+
+.info-data-div {
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 60px 30px;
+}
+
+.sub-info img {
+    width: 100%;
+}
+
+.contact-div {
+    background-color: #f4f4f4;
+}
+
+.contact-div-data {
+    padding: 50px 60px;
+}
+
+.footer {
+    background-color: #404040;
+    color: #fff;
+    padding: 20px 0px;
+}
+
+.signup-form span {
+    font-size: 12px;
+}
+
+.signup-form input {
+    border: 2px solid #cccccc;
+    border-radius: 3px;
+    padding: 5px 5px;
+    width: 100%;
+}
+
+.signup-form textarea {
+    border: 2px solid #cccccc;
+    border-radius: 3px;
+    padding: 5px 5px;
+    width: 100%;
+}
+
+.signup-form button {
+    background-color: #3ba1da;
+    border: 1px solid #3ba1da;
+    border-radius: 3px;
+    color: #fff;
+    height: 40px;
+    width: 100%;
+}
+
+.signup-form button:hover {
+    background-color: #318ec4;
+    cursor: pointer;
+}
