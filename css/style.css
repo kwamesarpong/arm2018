@@ -91,3 +91,13 @@
     background-color: #318ec4;
     cursor: pointer;
 }
+
+.chair-image {
+    border-radius: 10px;
+    width: 100%;
+}
+
+.social-images {
+    border-radius: 10px;
+    width: 100%;
+}
