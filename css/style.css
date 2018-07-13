@@ -101,3 +101,17 @@
     border-radius: 10px;
     width: 100%;
 }
+
+.committee-div {
+    padding-bottom: 50px;
+}
+
+.committee-div img {
+    height: 200px;
+    width: 200px;
+}
+
+.discover-image img {
+    height: 400px;
+    width: 400px;
+}
