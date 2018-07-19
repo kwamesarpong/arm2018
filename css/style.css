@@ -8,12 +8,20 @@
     src: url(../font/SourceSansPro.ttf);
 }
 
+.reset-padding {
+    padding: 0px;
+}
+
 .text-left {
     text-align: left;
 }
 
 .text-center {
     text-align: center;
+}
+
+.text-right {
+    text-align: right;
 }
 
 .logo-style {
@@ -71,6 +79,21 @@
     width: 100%;
 }
 
+.signup-form input:read-only {
+    background-color: #cccccc;
+    border: 2px solid #cccccc;
+    border-radius: 3px;
+    padding: 5px 5px;
+    width: 100%;
+}
+
+.signup-form select {
+    border: 2px solid #cccccc;
+    border-radius: 3px;
+    padding: 5px 5px;
+    width: 100%;
+}
+
 .signup-form textarea {
     border: 2px solid #cccccc;
     border-radius: 3px;
@@ -90,6 +113,15 @@
 .signup-form button:hover {
     background-color: #318ec4;
     cursor: pointer;
+}
+
+.signup-form button:disabled {
+    background-color: #8cb8d1;
+    border: 1px solid #8cb8d1;
+    border-radius: 3px;
+    color: #fff;
+    height: 40px;
+    width: 100%;
 }
 
 .chair-image {
@@ -114,4 +146,151 @@
 .discover-image img {
     height: 400px;
     width: 400px;
+}
+
+.log-out a {
+    color: #fff;
+    background-color: #3ba1da;
+    border-radius: 3px;
+    padding: 10px 10px;
+}
+
+.log-out a:hover {
+    color: #fff;
+    background-color: #318ec4;
+    text-decoration: none;
+}
+
+.progress {
+    height: 2px;
+}
+
+.progress-bar {
+    color: #3ba1da;
+    height: 2px;
+    width: 20%;
+}
+
+.regform-card {
+    box-shadow: 0px 2px 6px 2px #cfcfcf;
+}
+
+.regform-card-title {
+    background-color: #404040;
+    color: #fff;
+    padding: 30px 0px;
+    text-align: center;
+}
+
+.regform-padding {
+    padding: 30px 50px;
+}
+
+.image-upload > input {
+    display: none;
+}
+
+.fileupload-image {
+    height: 200px;
+    width: 200px;
+}
+
+.fileupload-image:hover {
+    cursor: pointer;
+    opacity: 0.6;
+}
+
+.sec-progress {
+    height: 2px;
+}
+
+.sec-progress-bar {
+    color: #3ba1da;
+    height: 2px;
+    width: 40%;
+}
+
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+}
+  
+.switch input {display:none;}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    -webkit-transition: .4s;
+    transition: .4s;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    -webkit-transition: .4s;
+    transition: .4s;
+}
+
+input:checked + .slider {
+    background-color: #2196F3;
+}
+
+input:focus + .slider {
+    box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked + .slider:before {
+    -webkit-transform: translateX(26px);
+    -ms-transform: translateX(26px);
+    transform: translateX(26px);
+}
+
+.slider.round {
+    border-radius: 34px;
+}
+  
+.slider.round:before {
+    border-radius: 50%;
+}
+
+.thi-progress {
+    height: 2px;
+}
+
+.thi-progress-bar {
+    color: #3ba1da;
+    height: 2px;
+    width: 60%;
+}
+
+.fou-progress {
+    height: 2px;
+}
+
+.fou-progress-bar {
+    color: #3ba1da;
+    height: 2px;
+    width: 80%;
+}
+
+.fif-progress {
+    height: 2px;
+}
+
+.fif-progress-bar {
+    color: #3ba1da;
+    height: 2px;
+    width: 100%;
 }
