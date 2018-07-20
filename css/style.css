@@ -178,7 +178,7 @@
 .regform-card-title {
     background-color: #404040;
     color: #fff;
-    padding: 30px 0px;
+    padding: 30px 20px;
     text-align: center;
 }
 
@@ -294,3 +294,29 @@ input:checked + .slider:before {
     height: 2px;
     width: 100%;
 }
+
+/* Next Page Link */
+.previous-page-link {
+    color: #fff;
+    background-color: #8cb8d1;
+    border-radius: 3px;
+    padding: 10px 60px;
+}
+
+.previous-page-link:hover {
+    color: #fff;
+    text-decoration: none;
+}
+
+.next-page-link {
+    color: #fff;
+    background-color: #3ba1da;
+    border-radius: 3px;
+    padding: 10px 60px;
+}
+
+.next-page-link:hover {
+    color: #fff;
+    text-decoration: none;
+}
+/* Next Page Link */
