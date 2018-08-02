@@ -38,11 +38,11 @@
 
 .info-div {
     background-size: cover;
-    background-image: url("../img/gold.jpg");
+    background-image: url("../img/homepage.jpg");
 }
 
 .info-col {
-    padding: 40px 30px;
+    padding: 60px 30px;
 }
 
 .info-data-div {
