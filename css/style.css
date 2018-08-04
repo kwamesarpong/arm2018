@@ -54,6 +54,17 @@
     width: 100%;
 }
 
+.countdown-timer-shadow {
+    border-radius: 7px;
+    box-shadow: 1px 3px 15px #c3c3c3;
+    padding: 20px;
+}
+
+.countdown-timer span {
+    font-size: 25px;
+    font-weight: 500;
+}
+
 .contact-div {
     background-color: #f4f4f4;
 }
