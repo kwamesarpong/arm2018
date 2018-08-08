@@ -87,7 +87,7 @@
                         <br />
                         <div class="signup-form">
 
-                            <form>
+                            <form onsubmit="submitUpdatedData()">
                                 <div class="row">
                                     <div class="col-md-12 text-center">
                                         <div class="image-upload">
@@ -365,7 +365,7 @@
                                             </select>
                                             </div>
                                             <div class="col-md-8">
-                                                <p class="sub-header"><input type="text" required /></p>
+                                                <p class="sub-header"><input type="number" name="phonenumber" required /></p>
                                             </div>
                                         </div>
                                     </div>
@@ -1095,12 +1095,12 @@
                                     <div class="col-md-3"></div>
                                     <div class="col-md-3"></div>
                                     <div class="col-md-3">
-                                        <!-- <button class="sub-header" disabled>Previous Page</button> -->
-                                        <a href="#" class="sub-header previous-page-link" disabled>Previous Page</a>
+                                        <button type="button" class="sub-header" disabled>Previous Page</button>
+                                        <!-- <a href="#" class="sub-header previous-page-link" disabled>Previous Page</a> -->
                                     </div>
                                     <div class="col-md-3">
-                                        <!-- <button type="submit" class="sub-header">Next Page</button> -->
-                                        <a href="secondform.html" class="sub-header next-page-link">Next Page</a>
+                                        <button type="submit" class="sub-header">Next Page</button>
+                                        <!-- <a href="secondform.html" class="sub-header next-page-link">Next Page</a> -->
                                     </div>
                                 </div>
                             </form>
@@ -1140,19 +1140,28 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
 
     <script type="text/javascript">
-        $(function () {
-            $(":file").change(function () {
-                if (this.files && this.files[0]) {
-                    var reader = new FileReader();
-                    reader.onload = imageIsLoaded;
-                    reader.readAsDataURL(this.files[0]);
-                }
-            });
-        });
+        $(document).ready(function(){
 
-        function imageIsLoaded(e) {
-            $('#myImg').attr('src', e.target.result);
-        };
+            $(function () {
+                $(":file").change(function () {
+                    if (this.files && this.files[0]) {
+                        var reader = new FileReader();
+                        reader.onload = imageIsLoaded;
+                        reader.readAsDataURL(this.files[0]);
+                    }
+                });
+            });
+
+            function imageIsLoaded(e) {
+                $('#myImg').attr('src', e.target.result);
+            };
+
+            function submitUpdatedData(e) {
+                e.preventDefault();
+                console.log("Yaay");
+            }
+
+        });
     </script>
 </body>
 

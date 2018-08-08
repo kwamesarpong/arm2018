@@ -99,23 +99,30 @@
                         <div class="col-md-4"></div>
                         <div class="col-md-4 signup-form">
 
-                            <form action="form.html" action="POST">
+                            <form class="dv-signup dv-label:registerperson" action="/firstform.html">
                                 <h6 class="sub-header">Email Address</h6>
-                                <p class="sub-header"><input type="email" required /></p>
+                                <p class="sub-header"><input type="email" name="email" required /></p>
                                 <br />
 
                                 <h6 class="sub-header">Password</h6>
-                                <p class="sub-header"><input type="password" required /></p>
-                                <br />
+                                <p class="sub-header"><input type="password" name="password" id="changePword" required /></p>
+                                <div class="row">
+                                    <div class="col-md-2">
+                                        <input type="checkbox" onclick="showHide()">
+                                    </div>
+                                    <div class="col-md-10">
+                                        <p class="sub-header">Show Password</p>
+                                    </div>
+                                </div>
 
-                                <h6 class="sub-header">Confirm Password</h6>
-                                <p class="sub-header"><input type="password" required /></p>
+                                <div class="dv-processing wait-color sub-header">Please wait...</div>
+                                <div class="dv-notify-failed fail-color sub-header">Email may be wrong or currently used to register.</div>
                                 <br />
 
                                 <div class="row">
                                     <div class="col-md-6">
-                                        <!-- <button type="submit" class="sub-header">Sign up</button> -->
-                                        <a href="firstform.html" class="sub-header next-page-link">Register</a>
+                                        <button type="submit" class="sub-header">Sign up</button>
+                                        <!-- <a href="firstform.html" class="sub-header next-page-link">Register</a> -->
                                     </div>
                                     <div class="col-md-6">
                                         <p class="sub-header">Login <a href="login.html" class="sub-header">here</a> if you have an account</p>
@@ -203,6 +210,31 @@
 
     <!-- Latest compiled JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+
+    <script type="text/javascript">
+        dvInterceptSubmission = function(resp) {
+            
+            data = { "email": resp.registerperson.email };
+            SDK.addData("conferenceForm", "registration", data,  function(response){
+                console.log(response);
+            });
+
+            return resp;
+        }
+
+        /* devlessCallbacks(function(resp){
+            console.log(resp);
+        }) */
+
+        function showHide() {
+            var x = document.getElementById("changePword");
+            if (x.type === "password") {
+                x.type = "text";
+            } else {
+                x.type = "password";
+            }
+        }
+    </script>
 </body>
 
 </html>
