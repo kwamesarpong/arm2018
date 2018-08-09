@@ -8,6 +8,12 @@
     src: url(../font/SourceSansPro.ttf);
 }
 
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
+}
+
 .reset-padding {
     padding: 0px;
 }
@@ -211,7 +217,7 @@
 }
 
 .fileupload-image {
-    height: 200px;
+    height: 230px;
     width: 200px;
 }
 
