@@ -99,19 +99,30 @@
                         <div class="col-md-4"></div>
                         <div class="col-md-4 signup-form">
 
-                            <form action="form.html" method="POST">
+                            <form onsubmit="event.preventDefault(); submitUpdatedData();">
                                 <h6 class="sub-header">Email Address</h6>
-                                <p class="sub-header"><input type="email" required /></p>
+                                <p class="sub-header"><input type="email" id="email" required /></p>
                                 <br />
 
                                 <h6 class="sub-header">Password</h6>
-                                <p class="sub-header"><input type="password" required /></p>
+                                <p class="sub-header"><input type="password" id="changePword" required /></p>
+                                <div class="row">
+                                    <div class="col-md-2">
+                                        <input type="checkbox" onclick="showHide()">
+                                    </div>
+                                    <div class="col-md-10">
+                                        <p class="sub-header">Show Password</p>
+                                    </div>
+                                </div>
+
+                                <br />
+                                <div class="sub-header fail-color" id="setError"></div>
+                                <div class="sub-header wait-color" id="setLoading"></div>
                                 <br />
 
                                 <div class="row">
                                     <div class="col-md-6">
-                                        <!-- <button type="submit" class="sub-header">Login</button> -->
-                                        <a href="firstform.html" class="sub-header next-page-link">Login</a>
+                                        <button type="submit" class="sub-header">Login</button>
                                     </div>
                                     <div class="col-md-6">
                                         <p class="sub-header">Register <a href="register.html" class="sub-header">here</a> if you don't have an account</p>
@@ -199,6 +210,44 @@
 
     <!-- Latest compiled JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+
+    <script type="text/javascript">
+        function showHide() {
+            var x = document.getElementById("changePword");
+            if (x.type === "password") {
+                x.type = "text";
+            } else {
+                x.type = "password";
+            }
+        };
+
+        function submitUpdatedData() {
+
+            document.getElementById("setLoading").innerHTML = "Please wait....";
+
+            var email = document.getElementById("email").value
+            var password = document.getElementById("changePword").value
+
+            SDK.call('devless', 'login', [null, email, null, password],
+            function(response){
+                if(response.payload.result == false) {
+                    document.getElementById("setError").innerHTML = "Email or password incorrect!";
+                    document.getElementById("setLoading").innerHTML = "";
+                }
+                else {
+                    document.getElementById("setLoading").innerHTML = "";
+                    SDK.setToken(response.payload.result.token);
+                    console.log(response);
+                    localStorage.setItem('userToken', response.payload.result.token);
+                    localStorage.setItem('userEmail', response.payload.result.profile.email);
+                    window.location.href = "/firstform.html";
+                }
+                
+            });
+
+        };
+
+    </script>
 </body>
 
 </html>

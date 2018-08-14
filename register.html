@@ -99,7 +99,7 @@
                         <div class="col-md-4"></div>
                         <div class="col-md-4 signup-form">
 
-                            <form class="dv-signup dv-label:registerperson" action="/firstform.html">
+                            <form class="dv-signup" action="/login.html">
                                 <h6 class="sub-header">Email Address</h6>
                                 <p class="sub-header"><input type="email" name="email" required /></p>
                                 <br />
@@ -212,7 +212,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
 
     <script type="text/javascript">
-        dvInterceptSubmission = function(resp) {
+        /* dvInterceptSubmission = function(resp) {
             
             data = { "email": resp.registerperson.email };
             SDK.addData("conferenceForm", "registration", data,  function(response){
@@ -220,7 +220,7 @@
             });
 
             return resp;
-        }
+        } */
 
         /* devlessCallbacks(function(resp){
             console.log(resp);

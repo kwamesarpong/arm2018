@@ -87,13 +87,13 @@
                         <br />
                         <div class="signup-form">
 
-                            <form>
+                            <form onsubmit="event.preventDefault(); submitUpdatedData();">
                                 <div class="row">
 
                                     <div class="col-md-6">
                                         <br />
-                                        <h6 class="sub-header">Estimate date of arrival</h6>
-                                        <p class="sub-header"><input type="text" name="firstName" required /></p>
+                                        <h6 class="sub-header">Estimate date of arrival (DD/MM/YYYY)</h6>
+                                        <p class="sub-header"><input type="date" name="arrivalDate" id="arrivalDate" required /></p>
                                         <br />
 
                                     </div>
@@ -101,35 +101,35 @@
                                     <div class="col-md-6">
                                         <br />
                                         <h6 class="sub-header">Means of transportation</h6>
-                                        <p class="sub-header"><input type="text" name="lastName" required /></p>
+                                        <p class="sub-header"><input type="text" name="aTransportationMeans" id="aTransportationMeans" required /></p>
                                         <br />
                                     </div>
 
                                     <div class="col-md-6">
                                         <br />
                                         <h6 class="sub-header">Arrival Airport/Bus station/other</h6>
-                                        <p class="sub-header"><input type="text" name="preferredName" required /></p>
+                                        <p class="sub-header"><input type="text" name="arrivalTerminal" id="arrivalTerminal" required /></p>
                                         <br />
                                     </div>
 
                                     <div class="col-md-6">
                                         <br />
                                         <h6 class="sub-header">Airline/Bus station</h6>
-                                        <p class="sub-header"><input type="text" name="preferredName" required /></p>
+                                        <p class="sub-header"><input type="text" name="airline" id="airline" required /></p>
                                         <br />
                                     </div>
 
                                     <div class="col-md-6">
                                         <br />
                                         <h6 class="sub-header">Flight Number</h6>
-                                        <p class="sub-header"><input type="text" name="preferredName" required /></p>
+                                        <p class="sub-header"><input type="text" name="aFlightNumber" id="aFlightNumber" /></p>
                                         <br />
                                     </div>
 
                                     <div class="col-md-6">
                                         <br />
                                         <h6 class="sub-header">Arrival time</h6>
-                                        <p class="sub-header"><input type="text" name="preferredName" required /></p>
+                                        <p class="sub-header"><input type="text" name="arrivalTime" id="arrivalTime" required /></p>
                                         <br />
                                     </div>
 
@@ -141,42 +141,42 @@
                                     <div class="col-md-6">
                                         <br />
                                         <h6 class="sub-header">Estimated date of departure (DD/MM/YYYY)</h6>
-                                        <p class="sub-header"><input type="text" name="preferredName" required /></p>
+                                        <p class="sub-header"><input type="date" name="departureDate" id="departureDate" required /></p>
                                         <br />
                                     </div>
 
                                     <div class="col-md-6">
                                         <br />
                                         <h6 class="sub-header">Means of transportation</h6>
-                                        <p class="sub-header"><input type="text" name="preferredName" required /></p>
+                                        <p class="sub-header"><input type="text" name="dTransportationMeans" id="dTransportationMeans" required /></p>
                                         <br />
                                     </div>
 
                                     <div class="col-md-6">
                                         <br />
                                         <h6 class="sub-header">Departure Airport/Bus station/other</h6>
-                                        <p class="sub-header"><input type="text" name="preferredName" required /></p>
+                                        <p class="sub-header"><input type="text" name="departureAirlineTerminal" id="departureAirlineTerminal" required /></p>
                                         <br />
                                     </div>
 
                                     <div class="col-md-6">
                                         <br />
                                         <h6 class="sub-header">Airline/Bus station</h6>
-                                        <p class="sub-header"><input type="text" name="preferredName" required /></p>
+                                        <p class="sub-header"><input type="text" name="departureAirline" id="departureAirline" required /></p>
                                         <br />
                                     </div>
 
                                     <div class="col-md-6">
                                         <br />
                                         <h6 class="sub-header">Flight number</h6>
-                                        <p class="sub-header"><input type="text" name="preferredName" required /></p>
+                                        <p class="sub-header"><input type="text" name="dFlightNumber" id="dFlightNumber" required /></p>
                                         <br />
                                     </div>
 
                                     <div class="col-md-6">
                                         <br />
                                         <h6 class="sub-header">Departure Time</h6>
-                                        <p class="sub-header"><input type="text" name="preferredName" required /></p>
+                                        <p class="sub-header"><input type="text" name="departureTime" id="departureTime" required /></p>
                                         <br />
                                     </div>
                                    
@@ -185,14 +185,16 @@
 
                                 <div class="row">
                                     <div class="col-md-3"></div>
-                                    <div class="col-md-3"></div>
-                                    <div class="col-md-3 text-center">
+                                    <div class="col-md-3">
+                                        <div class="sub-header wait-color" id="setLoading"></div>
+                                        <br />
+                                    </div>
+                                    <div class="col-md-3 text-center previous-page-padd">
                                         <!-- <button class="sub-header">Previous Page</button> -->
                                         <a href="thirdform.html" class="sub-header next-page-link">Previous Page</a>
                                     </div>
                                     <div class="col-md-3">
-                                        <!-- <button type="submit" class="sub-header">Next Page</button> -->
-                                        <a href="fifthform.html" class="sub-header next-page-link">Next Page</a>
+                                        <button type="submit" class="sub-header">Next Page</button>
                                     </div>
                                 </div>
                             </form>
@@ -245,6 +247,54 @@
         function imageIsLoaded(e) {
             $('#myImg').attr('src', e.target.result);
         };
+
+        function submitUpdatedData() {
+
+            document.getElementById("setLoading").innerHTML = "Please wait....";
+
+            var arrivalDate = document.getElementById("arrivalDate").value
+            var aTransportationMeans = document.getElementById("aTransportationMeans").value
+            var arrivalTerminal = document.getElementById("arrivalTerminal").value
+            var airline = document.getElementById("airline").value
+            var aFlightNumber = document.getElementById("aFlightNumber").value
+            var arrivalTime = document.getElementById("arrivalTime").value
+
+            var departureDate = document.getElementById("departureDate").value
+            var dTransportationMeans = document.getElementById("dTransportationMeans").value
+            var departureAirlineTerminal = document.getElementById("departureAirlineTerminal").value
+            var departureAirline = document.getElementById("departureAirline").value
+            var dFlightNumber = document.getElementById("dFlightNumber").value
+            var departureTime = document.getElementById("departureTime").value
+
+            var obtainedEmail = localStorage.getItem('userEmail');
+            
+            data = {
+                "arrivaldate": arrivalDate,
+                "atransportationmeans": aTransportationMeans,
+                "arrivalterminal": arrivalTerminal,
+                "airline": airline,
+                "aflightnumber": aFlightNumber,
+                "arrivaltime": arrivalTime,
+                "departuredate": departureDate,
+                "dtransportationmeans": dTransportationMeans,
+                "departureairlineterminal": departureAirlineTerminal,
+                "departureairline": departureAirline,
+                "dflightnumber": dFlightNumber,
+                "departuretime": departureTime
+            }
+
+            SDK.updateData("conferenceForm", "travelinformation", "email", obtainedEmail, data,
+                function(response){
+                    console.log(response);
+                    if (response.status_code === 619) {
+                        window.location.href = "/fifthform.html";
+                    }
+                    else {
+                        document.getElementById("setLoading").innerHTML = "Please logout and try again";
+                    }
+                });
+
+        }
     </script>
 </body>
 

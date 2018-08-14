@@ -68,7 +68,7 @@
             <br />
 
             <div class="container text-right log-out">
-                <a href="login.html" class="">Log out</a>
+                <a href="login.html">Log out</a>
             </div>
 
             <br /><br />
@@ -87,13 +87,13 @@
                         <br />
                         <div class="signup-form">
 
-                            <form>
+                            <form onsubmit="event.preventDefault(); submitUpdatedData();">
                                 <div class="row">
 
                                     <div class="col-md-6">
                                         <br />
                                         <h6 class="sub-header">Emergency Contact Person Name</h6>
-                                        <p class="sub-header"><input type="text" name="firstName" required /></p>
+                                        <p class="sub-header"><input type="text" name="emergencyContactFirstName" id="emergencyContactFirstName" required /></p>
                                         <br />
 
                                     </div>
@@ -101,21 +101,21 @@
                                     <div class="col-md-6">
                                         <br />
                                         <h6 class="sub-header">Emergency Contact Person Number</h6>
-                                        <p class="sub-header"><input type="text" name="lastName" required /></p>
+                                        <p class="sub-header"><input type="number" name="emergencyContactNumber" id="emergencyContactNumber" required /></p>
                                         <br />
                                     </div>
 
                                     <div class="col-md-6">
                                         <br />
                                         <h6 class="sub-header">Emergency Contact Person Email</h6>
-                                        <p class="sub-header"><input type="text" name="preferredName" required /></p>
+                                        <p class="sub-header"><input type="email" name="emergencyContactEmail" id="emergencyContactEmail" required /></p>
                                         <br />
                                     </div>
 
                                     <div class="col-md-6">
                                             <br />
                                             <h6 class="sub-header">Special Diet / Allergies</h6>
-                                            <p class="sub-header"><input type="text" name="preferredName" required /></p>
+                                            <p class="sub-header"><input type="text" name="specialDiet" id="specialDiet" required /></p>
                                             <br />
                                         </div>
 
@@ -123,15 +123,16 @@
                                 <br /><br />
 
                                 <div class="row">
-                                    <div class="col-md-3"></div>
-                                    <div class="col-md-3"></div>
-                                    <div class="col-md-3 text-center">
+                                    <div class="col-md-6">
+                                        <div class="sub-header wait-color" id="setLoading"></div>
+                                        <br />
+                                    </div>
+                                    <div class="col-md-3 text-center previous-page-padd">
                                         <!-- <button class="sub-header">Previous Page</button> -->
                                         <a href="fourthform.html" class="sub-header next-page-link">Previous Page</a>
                                     </div>
                                     <div class="col-md-3">
-                                        <!-- <button type="submit" class="sub-header">Next Page</button> -->
-                                        <a href="#" class="sub-header next-page-link">Save Details</a>
+                                        <button type="submit" class="sub-header">Next Page</button>
                                     </div>
                                 </div>
                             </form>
@@ -185,6 +186,37 @@
         function imageIsLoaded(e) {
             $('#myImg').attr('src', e.target.result);
         };
+
+        function submitUpdatedData() {
+
+            document.getElementById("setLoading").innerHTML = "Please wait....";
+
+            var emergencyContactFullName = document.getElementById("emergencyContactFirstName").value
+            var emergencyContactNumber = document.getElementById("emergencyContactNumber").value
+            var emergencyContactEmail = document.getElementById("emergencyContactEmail").value
+            var specialDiet = document.getElementById("specialDiet").value
+
+            var obtainedEmail = localStorage.getItem('userEmail');
+            
+            data = {
+                "emergencycontactfullname": emergencyContactFullName,
+                "emergencycontactnumber": emergencyContactNumber,
+                "emergencycontactemail": emergencyContactEmail,
+                "specialdiet": specialDiet
+            }
+
+            SDK.updateData("conferenceForm", "otherinfo", "email", obtainedEmail, data,
+                function(response){
+                    console.log(response);
+                    if (response.status_code === 619) {
+                        document.getElementById("setLoading").innerHTML = "Congratulations. You have successfully registered for the event. Please log out and wait for a confirmation email. Thank you.";
+                    }
+                    else {
+                        document.getElementById("setLoading").innerHTML = "Please logout and try again";
+                    }
+                });
+
+        }
     </script>
 </body>
 

@@ -346,3 +346,7 @@ input:checked + .slider:before {
     text-decoration: none;
 }
 /* Next Page Link */
+
+.previous-page-padd {
+    padding-top: 8px;
+}

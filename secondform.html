@@ -87,38 +87,37 @@
                         <br />
                         <div class="signup-form">
 
-                            <form>
+                            <form onsubmit="event.preventDefault(); submitUpdatedData();">
                                 <div class="row">
                                     <div class="col-md-6">
                                         <br />
                                         <h6 class="sub-header">National Member Organization (NMO)</h6>
                                         <p class="sub-header">
-                                            <select name="status" required>
+                                            <select name="nmo" id="nmo" required>
                                                 <option value="">Select one</option>
-                                                <option value="">ABEM -  Burundi</option>
-                                                <option value="">AEMP - Togo</option>
-                                                <option value="">AEM -  Burkina Faso</option>
-                                                <option value="">AEM -  Guinea</option>
-                                                <option value="">APS- Mali</option>
-                                                <option value="">CAMSA - Cameroun</option>
-                                                <option value="">EMSA -  Ethiopia</option>
-                                                <option value="">FGMSA - Ghana</option>
-                                                <option value="">FNESS - Senegal</option>
-                                                <option value="">FUMSA - Uganda</option>
-                                                <option value="">LMSA - Lesotho</option>
-                                                <option value="">MEDSAR - Rwanda</option>
-                                                <option value="">MedSin - Sudan</option>
-                                                <option value="">MESENA - Namibia</option>
-                                                <option value="">MSA-DRC - Congo</option>
-                                                <option value="">MSAKE - Kenya</option>
-                                                <option value="">NIMSA - Nigeria</option>
-                                                <option value="">SAMSA - South Africa</option>
-                                                <option value="">SLEMSA - Sierra Leone</option>
-                                                <option value="">TAMSA - Tanzania </option>
-                                                <option value="">UMMSA - Malawi</option>
-                                                <option value="">UniGaMSA - Gambia</option>
-                                                <option value="">ZIMSA - Zimbabwe</option>
-                                                <option value="">Other</option>
+                                                <option value="ABEM -  Burundi">ABEM -  Burundi</option>
+                                                <option value="AEMP - Togo">AEMP - Togo</option>
+                                                <option value="AEM -  Burkina Faso">AEM -  Burkina Faso</option>
+                                                <option value="AEM -  Guinea">AEM -  Guinea</option>
+                                                <option value="APS- Mali">APS- Mali</option>
+                                                <option value="CAMSA - Cameroun">CAMSA - Cameroun</option>
+                                                <option value="EMSA -  Ethiopia">EMSA -  Ethiopia</option>
+                                                <option value="FNESS - Senegal">FNESS - Senegal</option>
+                                                <option value="FUMSA - Uganda">FUMSA - Uganda</option>
+                                                <option value="LMSA - Lesotho">LMSA - Lesotho</option>
+                                                <option value="MEDSAR - Rwanda">MEDSAR - Rwanda</option>
+                                                <option value="MedSin - Sudan">MedSin - Sudan</option>
+                                                <option value="MESENA - Namibia">MESENA - Namibia</option>
+                                                <option value="MSA-DRC - Congo">MSA-DRC - Congo</option>
+                                                <option value="MSAKE - Kenya">MSAKE - Kenya</option>
+                                                <option value="NIMSA - Nigeria">NIMSA - Nigeria</option>
+                                                <option value="SAMSA - South Africa">SAMSA - South Africa</option>
+                                                <option value="SLEMSA - Sierra Leone">SLEMSA - Sierra Leone</option>
+                                                <option value="TAMSA - Tanzania">TAMSA - Tanzania</option>
+                                                <option value="UMMSA - Malawi">UMMSA - Malawi</option>
+                                                <option value="UniGaMSA - Gambia">UniGaMSA - Gambia</option>
+                                                <option value="ZIMSA - Zimbabwe">ZIMSA - Zimbabwe</option>
+                                                <option value="Other">Other</option>
                                             </select>
                                         </p>
                                         <br />
@@ -127,7 +126,7 @@
                                     <div class="col-md-6">
                                         <br />
                                         <h6 class="sub-header">If your NMO is not listed, please state yours here</h6>
-                                        <p class="sub-header"><input type="text" name="preferredName" required /></p>
+                                        <p class="sub-header"><input type="text" id="statenmo" name="stateNMO" /></p>
                                         <br />
                                     </div>
 
@@ -135,18 +134,18 @@
                                         <br />
                                         <h6 class="sub-header">Participation Status</h6>
                                         <p class="sub-header">
-                                            <select name="status" required>
+                                            <select name="participationstatus" id="participationstatus" required>
                                                 <option value="">Select one</option>
-                                                <option value="AllStatusList">Alumnus</option>
-                                                <option value="AllStatusList">General Delegate</option>
-                                                <option value="AllStatusList">IFMSA Official</option>
-                                                <option value="AllStatusList">International Assistant</option>
-                                                <option value="AllStatusList">MM 19 OC representative</option>
-                                                <option value="AllStatusList">Observer</option>
-                                                <option value="AllStatusList">Program Representative</option>
-                                                <option value="AllStatusList">Regional Team</option>
-                                                <option value="AllStatusList">Support Persons</option>
-                                                <option value="AllStatusList">Task Force Representative</option>
+                                                <option value="Alumnus">Alumnus</option>
+                                                <option value="General Delegate">General Delegate</option>
+                                                <option value="IFMSA Official">IFMSA Official</option>
+                                                <option value="International Assistant">International Assistant</option>
+                                                <option value="MM 19 OC representative">MM 19 OC representative</option>
+                                                <option value="Observer">Observer</option>
+                                                <option value="Program Representative">Program Representative</option>
+                                                <option value="Regional Team">Regional Team</option>
+                                                <option value="Support Persons">Support Persons</option>
+                                                <option value="Task Force Representative">Task Force Representative</option>
                                                 
                                                 
                                             </select>
@@ -158,17 +157,17 @@
                                         <br />
                                         <h6 class="sub-header">Which session will you attend?</h6>
                                         <p class="sub-header">
-                                            <select name="status" required>
+                                            <select name="attendsession" id="attendsession" required>
                                                 <option value="">Select one</option>
-                                                <option value="AllSessionsList">Presidents’ Sessions</option>
-                                                <option value="AllSessionsList">NMO Management Sessions</option>
-                                                <option value="AllSessionsList">SCOME (Medical Education)</option>
-                                                <option value="AllSessionsList">SCORE (professional Exchange)</option>
-                                                <option value="AllSessionsList">SCOPE ( professional Exchange)</option>
-                                                <option value="AllSessionsList">SCORA ( Sexual & Reproductive Health including HIV/AIDS)</option>
-                                                <option value="AllSessionsList">SCOPH ( public Health)</option>
-                                                <option value="AllSessionsList">SCORP ( Human Rights & Peace)</option>
-                                                <option value="AllSessionsList">Alumni</option>
+                                                <option value="Presidents’ Sessions">Presidents’ Sessions</option>
+                                                <option value="NMO Management Sessions">NMO Management Sessions</option>
+                                                <option value="SCOME (Medical Education)">SCOME (Medical Education)</option>
+                                                <option value="SCORE (professional Exchange)">SCORE (professional Exchange)</option>
+                                                <option value="SCOPE ( professional Exchange)">SCOPE ( professional Exchange)</option>
+                                                <option value="SCORA ( Sexual & Reproductive Health including HIV/AIDS)">SCORA ( Sexual & Reproductive Health including HIV/AIDS)</option>
+                                                <option value="SCOPH ( public Health)">SCOPH ( public Health)</option>
+                                                <option value="SCORP ( Human Rights & Peace)">SCORP ( Human Rights & Peace)</option>
+                                                <option value="Alumni">Alumni</option>
                                             </select>
                                         </p>
                                         <br />
@@ -178,19 +177,19 @@
                                         <br />
                                         <h6 class="sub-header">Position in your NMO</h6>
                                         <p class="sub-header">
-                                            <select name="status" required>
+                                            <select name="nmoposition" id="nmoposition" required>
                                                 <option value="">Select one</option>
-                                                <option value="AllPositionsList">I am on the IFMSA International Team of Officials</option>
-                                                <option value="AllPositionsList">NMO President (National President)</option>
-                                                <option value="AllPositionsList">NOME (National Officer on Medical Education)</option>
-                                                <option value="AllPositionsList">NEO (National Officer for Professional Exchanges)</option>
-                                                <option value="AllPositionsList">NPO (National Officer on Public Health)</option>
-                                                <option value="AllPositionsList">NORA (National Officer on Sexual & Reproductive Health including HIV/AIDS)</option>
-                                                <option value="AllPositionsList">NORE (National Officer on Human Rights and Peace)</option>
-                                                <option value="AllPositionsList">Other National Board member position</option>
-                                                <option value="AllPositionsList">Local Officer</option>
-                                                <option value="AllPositionsList">Alumnus</option>
-                                                <option value="AllPositionsList">General Member</option>
+                                                <option value="I am on the IFMSA International Team of Officials">I am on the IFMSA International Team of Officials</option>
+                                                <option value="NMO President (National President)">NMO President (National President)</option>
+                                                <option value="NOME (National Officer on Medical Education)">NOME (National Officer on Medical Education)</option>
+                                                <option value="NEO (National Officer for Professional Exchanges)">NEO (National Officer for Professional Exchanges)</option>
+                                                <option value="NPO (National Officer on Public Health)">NPO (National Officer on Public Health)</option>
+                                                <option value="NORA (National Officer on Sexual & Reproductive Health including HIV/AIDS)">NORA (National Officer on Sexual & Reproductive Health including HIV/AIDS)</option>
+                                                <option value="NORE (National Officer on Human Rights and Peace)">NORE (National Officer on Human Rights and Peace)</option>
+                                                <option value="Other National Board member position">Other National Board member position</option>
+                                                <option value="Local Officer">Local Officer</option>
+                                                <option value="Alumnus">Alumnus</option>
+                                                <option value="General Member">General Member</option>
                                             </select>
                                         </p>
                                         <br />
@@ -201,7 +200,7 @@
                                         <h6 class="sub-header">Do you plan on attending the pre-ARM?</h6>
                                         <p class="sub-header">
                                             <label class="switch">
-                                              <input type="checkbox" name="attendPreARM">
+                                              <input type="checkbox" name="prearmattendance" id="prearmattendance" value="yes" onchange="preArm()" />
                                               <span class="slider round"></span>
                                             </label>
                                         </p>
@@ -213,7 +212,7 @@
                                         <h6 class="sub-header">Do you plan on attending the post-ARM?</h6>
                                         <p class="sub-header">
                                             <label class="switch">
-                                              <input type="checkbox" name="attendPreARM">
+                                              <input type="checkbox" name="postarmattendance" id="postarmattendance" value="yes" onchange="postArm()" />
                                               <span class="slider round"></span>
                                             </label>
                                         </p>
@@ -225,14 +224,17 @@
 
                                 <div class="row">
                                     <div class="col-md-3"></div>
-                                    <div class="col-md-3"></div>
-                                    <div class="col-md-3 text-center">
+                                    <div class="col-md-3">
+                                        <div class="sub-header wait-color" id="setLoading"></div>
+                                        <br />
+                                    </div>
+                                    <div class="col-md-3 text-center previous-page-padd">
                                         <!-- <button class="sub-header">Previous Page</button> -->
                                         <a href="firstform.html" class="sub-header next-page-link">Previous Page</a>
                                     </div>
                                     <div class="col-md-3">
-                                        <!-- <button type="submit" class="sub-header">Next Page</button> -->
-                                        <a href="thirdform.html" class="sub-header next-page-link">Next Page</a>
+                                        <button type="submit" class="sub-header">Next Page</button>
+                                        <!-- <a href="thirdform.html" class="sub-header next-page-link">Next Page</a> -->
                                     </div>
                                 </div>
                             </form>
@@ -285,6 +287,61 @@
         function imageIsLoaded(e) {
             $('#myImg').attr('src', e.target.result);
         };
+
+        function preArm() {
+            var x = document.getElementById("prearmattendance");
+            if (x.checked === true) {
+                x.value = "yes";
+            } else {
+                x.value = "no";
+            }
+        };
+
+        function postArm() {
+            var y = document.getElementById("prearmattendance");
+            if (y.checked === true) {
+                y.value = "yes";
+            } else {
+                y.value = "no";
+            }
+        };
+
+        function submitUpdatedData() {
+
+            document.getElementById("setLoading").innerHTML = "Please wait....";
+
+            var nmo = document.getElementById("nmo").value
+            var statenmo = document.getElementById("statenmo").value
+            var participationstatus = document.getElementById("participationstatus").value
+            var attendsession = document.getElementById("attendsession").value
+            var nmoposition = document.getElementById("nmoposition").value
+            var prearmattendance = document.getElementById("prearmattendance").value
+            var postarmattendance = document.getElementById("postarmattendance").value
+
+            var obtainedEmail = localStorage.getItem('userEmail');
+            
+            data = {
+                "nmo": nmo,
+                "statenmo": statenmo,
+                "participationstatus": participationstatus,
+                "attendsession": attendsession,
+                "nmoposition": nmoposition,
+                "prearmattendance": prearmattendance,
+                "postarmattendance": postarmattendance
+            }
+            
+            SDK.updateData("conferenceForm", "secondform", "email", obtainedEmail, data,
+                function(response) {
+                    console.log(response);
+                    if (response.status_code === 619) {
+                        window.location.href = "/thirdform.html";
+                    }
+                    else {
+                        document.getElementById("setLoading").innerHTML = "Please logout and try again";
+                    }
+                });
+
+        }
     </script>
 </body>
 

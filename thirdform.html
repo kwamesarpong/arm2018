@@ -87,14 +87,14 @@
                         <br />
                         <div class="signup-form">
 
-                            <form>
+                            <form onsubmit="event.preventDefault(); submitUpdatedData();">
                                 <div class="row">
 
                                     <div class="col-md-6">
                                         <br />
                                         <h6 class="sub-header">Nationality</h6>
                                         <p class="sub-header">
-                                        <select name="nationality">
+                                        <select name="nationality" id="nationality" required>
                                             <option value="">Select</option>
                                             <option value="Afghanistan">Afghanistan</option> 
                                             <option value="Albania">Albania</option> 
@@ -343,7 +343,7 @@
                                     <div class="col-md-6">
                                         <br />
                                         <h6 class="sub-header">Full Name as in your passport</h6>
-                                        <p class="sub-header"><input type="text" name="passportName" required /></p>
+                                        <p class="sub-header"><input type="text" id="fullpassportname" name="passportName" required /></p>
                                         <br />
 
                                     </div>
@@ -351,7 +351,7 @@
                                     <div class="col-md-6">
                                         <br />
                                         <h6 class="sub-header">Passport Number</h6>
-                                        <p class="sub-header"><input type="text" name="passportNumber" required /></p>
+                                        <p class="sub-header"><input type="text" id="passportnumber" name="passportNumber" required /></p>
                                         <br />
 
                                     </div>
@@ -359,7 +359,7 @@
                                     <div class="col-md-6">
                                         <br />
                                         <h6 class="sub-header">Date of Issue (DD/MM/YYYY)</h6>
-                                        <p class="sub-header"><input type="text" name="dateOfIssue" required /></p>
+                                        <p class="sub-header"><input type="date" id="dateofissue" name="dateOfIssue" required /></p>
                                         <br />
 
                                     </div>
@@ -367,7 +367,7 @@
                                     <div class="col-md-6">
                                         <br />
                                         <h6 class="sub-header">Date of Expiry (DD/MM/YYYY)</h6>
-                                        <p class="sub-header"><input type="text" name="dateOfExpiry" required /></p>
+                                        <p class="sub-header"><input type="date" id="dateofexpiry" name="dateOfExpiry" required /></p>
                                         <br />
 
                                     </div>
@@ -377,7 +377,7 @@
                                         <h6 class="sub-header">Do you hold any other nationality?</h6>
                                         <p class="sub-header">
                                             <label class="switch">
-                                              <input type="checkbox" name="attendPreGA">
+                                              <input type="checkbox" name="othernationalityyesno" id="othernationalityyesno" value="yes" onchange="checkOtherNatio()" />
                                               <span class="slider round"></span>
                                             </label>
                                         </p>
@@ -389,7 +389,7 @@
                                         <br />
                                         <h6 class="sub-header">If you do, what is it?</h6>
                                         <p class="sub-header">
-                                        <select name="residencyCountry">
+                                        <select name="othernationality" id="othernationality">
                                             <option value="">Select</option>
                                             <option value="Afghanistan">Afghanistan</option> 
                                             <option value="Albania">Albania</option> 
@@ -640,7 +640,7 @@
                                         <h6 class="sub-header">Do you need a visa to enter Ghana?</h6>
                                         <p class="sub-header">
                                             <label class="switch">
-                                              <input type="checkbox" name="attendPreGA">
+                                              <input type="checkbox" name="needvisa" id="needvisa" onchange="visaNeedCheck()" />
                                               <span class="slider round"></span>
                                             </label>
                                         </p>
@@ -653,7 +653,7 @@
                                         <h6 class="sub-header">Do you have a valid visa to enter Ghana?</h6>
                                         <p class="sub-header">
                                             <label class="switch">
-                                              <input type="checkbox" name="attendPreGA">
+                                              <input type="checkbox" name="havevisa" id="havevisa" onchange="visaCheck()" />
                                               <span class="slider round"></span>
                                             </label>
                                         </p>
@@ -664,7 +664,7 @@
                                     <div class="col-md-6">
                                         <br />
                                         <h6 class="sub-header">Estimated Duration of stay in Ghana (in days)</h6>
-                                        <p class="sub-header"><input type="text" name="passportNumber" required /></p>
+                                        <p class="sub-header"><input type="number" id="durationofstay" name="durationofstay" required /></p>
                                         <br />
 
                                     </div>
@@ -673,14 +673,16 @@
 
                                 <div class="row">
                                     <div class="col-md-3"></div>
-                                    <div class="col-md-3"></div>
-                                    <div class="col-md-3 text-center">
+                                    <div class="col-md-3">
+                                        <div class="sub-header wait-color" id="setLoading"></div>
+                                        <br />
+                                    </div>
+                                    <div class="col-md-3 text-center previous-page-padd">
                                         <!-- <button class="sub-header">Previous Page</button> -->
                                         <a href="secondform.html" class="sub-header next-page-link">Previous Page</a>
                                     </div>
                                     <div class="col-md-3">
-                                        <!-- <button type="submit" class="sub-header">Next Page</button> -->
-                                        <a href="fourthform.html" class="sub-header next-page-link">Next Page</a>
+                                        <button type="submit" class="sub-header">Next Page</button>
                                     </div>
                                 </div>
                             </form>
@@ -733,6 +735,76 @@
         function imageIsLoaded(e) {
             $('#myImg').attr('src', e.target.result);
         };
+
+        function checkOtherNatio() {
+            var x = document.getElementById("othernationalityyesno");
+            if (x.checked === true) {
+                x.value = "yes";
+            } else {
+                x.value = "no";
+            }
+        };
+
+        function visaNeedCheck() {
+            var y = document.getElementById("needvisa");
+            if (y.checked === true) {
+                y.value = "yes";
+            } else {
+                y.value = "no";
+            }
+        };
+
+        function visaCheck() {
+            var z = document.getElementById("havevisa");
+            if (z.checked === true) {
+                z.value = "yes";
+            } else {
+                z.value = "no";
+            }
+        };
+
+        function submitUpdatedData() {
+
+            document.getElementById("setLoading").innerHTML = "Please wait....";
+
+            var nationality = document.getElementById("nationality").value
+            var fullpassportname = document.getElementById("fullpassportname").value
+            var passportnumber = document.getElementById("passportnumber").value
+            var dateofissue = document.getElementById("dateofissue").value
+            var dateofexpiry = document.getElementById("dateofexpiry").value
+            var othernationalityyesno = document.getElementById("othernationalityyesno").value
+            var othernationality = document.getElementById("othernationality").value
+            var needvisa = document.getElementById("needvisa").value
+            var havevisa = document.getElementById("havevisa").value
+            var durationofstay = document.getElementById("durationofstay").value
+
+            var obtainedEmail = localStorage.getItem('userEmail');
+            
+            data = {
+                "nationality": nationality,
+                "fullpassportname": fullpassportname,
+                "passportnumber": passportnumber,
+                "dateofissue": dateofissue,
+                "dateofexpiry": dateofexpiry,
+                "othernationalityyesno": othernationalityyesno,
+                "othernationality": othernationality,
+                "needvisa": needvisa,
+                "havevisa": havevisa,
+                "durationofstay": durationofstay
+            }
+
+            SDK.updateData("conferenceForm", "thirdform", "email", obtainedEmail, data,
+                function(response){
+                    console.log(response);
+                    if (response.status_code === 619) {
+                        window.location.href = "/fourthform.html";
+                    }
+                    else {
+                        document.getElementById("setLoading").innerHTML = "Please logout and try again";
+                    }
+                });
+
+        }
     </script>
 </body>
 

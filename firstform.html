@@ -87,7 +87,8 @@
                         <br />
                         <div class="signup-form">
 
-                            <form onsubmit="event.preventDefault(); submitUpdatedData();" method="post" enctype="multipart/form-data">
+                            <!-- <form onsubmit="event.preventDefault(); submitUpdatedData();" method="post" enctype="multipart/form-data"> -->
+                            <form class="dv-add-oneto:conferenceForm:registration">
                                 <div class="row">
                                     <div class="col-md-12 text-center">
                                         <div class="image-upload">
@@ -95,7 +96,7 @@
                                                 <img src="img/profile.png" id="myImg" class="fileupload-image" />
                                             </label>
                                         
-                                            <input id="file-input" type="file" accept="image/*" name="personpic" required />
+                                            <input id="file-input" type="file" accept="image/*" name="img" required />
                                         </div>
                                         <p>Upload your personal photo in png or jpg format. (Limit 3mb) <br />
                                             This will appear on your badge/tag.</p>
@@ -105,7 +106,7 @@
                                     <div class="col-md-6">
                                         <br />
                                         <h6 class="sub-header">First Name</h6>
-                                        <p class="sub-header"><input type="text" name="firstName" required /></p>
+                                        <p class="sub-header"><input type="text" id="firstName" name="firstname" required /></p>
                                         <br />
 
                                     </div>
@@ -113,14 +114,14 @@
                                     <div class="col-md-6">
                                         <br />
                                         <h6 class="sub-header">Last Name</h6>
-                                        <p class="sub-header"><input type="text" name="lastName" required /></p>
+                                        <p class="sub-header"><input type="text" id="lastName" name="lastname" required /></p>
                                         <br />
                                     </div>
 
                                     <div class="col-md-6">
                                         <br />
                                         <h6 class="sub-header">Preferred Name on badge/tag</h6>
-                                        <p class="sub-header"><input type="text" name="preferredName" required /></p>
+                                        <p class="sub-header"><input type="text" id="preferredName" name="badgename" required /></p>
                                         <br />
                                     </div>
 
@@ -128,7 +129,7 @@
                                         <br />
                                         <h6 class="sub-header">Gender</h6>
                                         <p class="sub-header">
-                                            <select name="gender" required>
+                                            <select name="gender" id="gender" required>
                                                 <option value="">Select one</option>
                                                 <option value="Male">Male</option>
                                                 <option value="Female">Female</option>
@@ -142,7 +143,7 @@
                                         <h6 class="sub-header">Mobile Number</h6>
                                         <div class="row">
                                             <div class="col-md-4">
-                                                <select name="countryCode" required>
+                                                <select name="countrycode" id="countryCode" required>
                                                 <option value="">Select</option>
                                                 <option data-countryCode="GB" value="44">UK (+44)</option>
                                                 <option data-countryCode="US" value="1">USA (+1)</option>
@@ -365,7 +366,7 @@
                                             </select>
                                             </div>
                                             <div class="col-md-8">
-                                                <p class="sub-header"><input type="number" name="phonenumber" min="1" required /></p>
+                                                <p class="sub-header"><input type="number" name="phonenumber" min="1" id="phoneNumber" required /></p>
                                             </div>
                                         </div>
                                     </div>
@@ -375,7 +376,7 @@
                                         <h6 class="sub-header">Date of Birth</h6>
                                         <div class="row">
                                             <div class="col-md-3">
-                                            <select name="day" required>
+                                            <select name="birthday" id="birthDay" required>
                                                 <option value="">Day</option>
                                                 <option value="1">1</option>
                                                 <option value="2">2</option>
@@ -411,7 +412,7 @@
                                             </select>
                                             </div>
                                             <div class="col-md-6">
-                                                <select name="month" required>
+                                                <select name="birthmonth" id="birthMonth" required>
                                                     <option value="">Month</option>
                                                     <option value="January">January</option>
                                                     <option value="February">February</option>
@@ -428,7 +429,7 @@
                                                 </select>
                                             </div>
                                             <div class="col-md-3">
-                                                <select name="year" required>
+                                                <select name="birthyear" id="birthYear" required>
                                                     <option value="">Year</option>
                                                     <option value="2018">2018</option>
                                                     <option value="2017">2017</option>
@@ -556,36 +557,36 @@
 
                                     <div class="col-md-6">
                                         <br />
-                                        <h6 class="sub-header">Email Address</h6>
-                                        <p class="sub-header"><input type="text" name="emailAddr" readonly /></p>
+                                        <h6 class="sub-header">Contact Email Address</h6>
+                                        <p class="sub-header"><input type="email" id="emailAddress" name="email" readonly /></p>
                                         <br />
                                     </div>
 
                                     <div class="col-md-6">
                                         <br />
                                         <h6 class="sub-header">Facebook Profile Url</h6>
-                                        <p class="sub-header"><input type="text" name="facebookProfile" required /></p>
+                                        <p class="sub-header"><input type="text" id="facebookProfile" name="facebookurl" required /></p>
                                         <br />
                                     </div>
 
                                     <div class="col-md-6">
                                         <br />
                                         <h6 class="sub-header">Street Address</h6>
-                                        <p class="sub-header"><input type="text" name="streetAddress" required /></p>
+                                        <p class="sub-header"><input type="text" id="streetAddress" name="streetaddress" required /></p>
                                         <br />
                                     </div>
 
                                     <div class="col-md-6">
                                         <br />
                                         <h6 class="sub-header">City</h6>
-                                        <p class="sub-header"><input type="text" name="city" required /></p>
+                                        <p class="sub-header"><input type="text" id="city" name="city" required /></p>
                                         <br />
                                     </div>
 
                                     <div class="col-md-6">
                                         <br />
                                         <h6 class="sub-header">Postal Code</h6>
-                                        <p class="sub-header"><input type="text" name="postalCode" required /></p>
+                                        <p class="sub-header"><input type="text" id="postalCode" name="postalcode" required /></p>
                                         <br />
                                     </div>
 
@@ -593,7 +594,7 @@
                                         <br />
                                         <h6 class="sub-header">Country of Birth</h6>
                                         <p class="sub-header">
-                                        <select name="birthCountry" required>
+                                        <select name="birthcountry" id="birthCountry" required>
                                             <option value="">Select</option>
                                             <option value="Afghanistan">Afghanistan</option> 
                                             <option value="Albania">Albania</option> 
@@ -843,7 +844,7 @@
                                         <br />
                                         <h6 class="sub-header">Country of Current Residency</h6>
                                         <p class="sub-header">
-                                        <select name="residencyCountry" required>
+                                        <select name="residencecountry" id="residencyCountry" required>
                                             <option value="">Select</option>
                                             <option value="Afghanistan">Afghanistan</option> 
                                             <option value="Albania">Albania</option> 
@@ -1093,7 +1094,9 @@
 
                                 <div class="row">
                                     <div class="col-md-3"></div>
-                                    <div class="col-md-3"></div>
+                                    <div class="col-md-3">
+                                        <div class="dv-processing wait-color sub-header" id="returnError">Please wait...</div>
+                                    </div>
                                     <div class="col-md-3">
                                         <button type="button" class="sub-header" disabled>Previous Page</button>
                                         <!-- <a href="#" class="sub-header previous-page-link" disabled>Previous Page</a> -->
@@ -1140,6 +1143,24 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
 
     <script type="text/javascript">
+        window.onload = setEmail;
+
+        devlessCallbacks(function(resp){
+            console.log(resp);
+            if (resp.payload.status_code === 609) {
+                window.location.href="/secondform.html";
+            }
+            else {
+                document.getElementById("returnError").innerHTML = "Please log out and try later!";
+            }
+        })
+
+        function setEmail() {
+            var obtainedEmail = localStorage.getItem('userEmail');
+            document.getElementById('emailAddress').value = obtainedEmail;
+        };
+
+
         $(function () {
             $(":file").change(function () {
                 if (this.files && this.files[0]) {
@@ -1165,8 +1186,41 @@
         };
 
         function submitUpdatedData() {
+
             var image = document.getElementById("file-input").value
-            console.log(image);
+            var firstName = document.getElementById("firstName").value
+            var lastName = document.getElementById("lastName").value
+            var preferredName = document.getElementById("preferredName").value
+            var gender = document.getElementById("gender").value
+            var countryCode = document.getElementById("countryCode").value
+            var phoneNumber = document.getElementById("phoneNumber").value
+            var birthDay = document.getElementById("birthDay").value
+            var birthMonth = document.getElementById("birthMonth").value
+            var birthYear = document.getElementById("birthYear").value
+            var emailAddress = document.getElementById("emailAddress").value
+            var facebookProfile = document.getElementById("facebookProfile").value
+            var streetAddress = document.getElementById("streetAddress").value
+            var city = document.getElementById("city").value
+            var postalCode = document.getElementById("postalCode").value
+            var birthCountry = document.getElementById("birthCountry").value
+            var residencyCountry = document.getElementById("residencyCountry").value
+            
+            data = {
+                "img": image,
+                "firstname": firstName,
+                "lastname": lastName,
+                "badgename": preferredName,
+                "firstname": firstName,
+                "gender": gender,
+                "countrycode": countryCode,
+                "phonenumber": phoneNumber,
+                "birthday": birthDay,
+                "birthmonth": birthMonth,
+                "birthyear": birthYear,
+                "email": emailAddress
+            }
+            SDK.updateData("conferenceForm", "registration", "id", "1", data, function(response){console.log(response)});
+
         }
 
     </script>
