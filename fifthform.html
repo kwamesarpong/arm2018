@@ -68,7 +68,7 @@
             <br />
 
             <div class="container text-right log-out">
-                <a href="login.html">Log out</a>
+                <button onclick="event.preventDefault(); logOut();">Log out</button>
             </div>
 
             <br /><br />
@@ -173,6 +173,8 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
 
     <script type="text/javascript">
+        window.onload = checkStatus;
+
         $(function () {
             $(":file").change(function () {
                 if (this.files && this.files[0]) {
@@ -185,6 +187,37 @@
 
         function imageIsLoaded(e) {
             $('#myImg').attr('src', e.target.result);
+        };
+
+        function logOut() {
+            localStorage.removeItem('userToken');
+            localStorage.removeItem('userEmail');
+            window.location.href = "/login.html";
+        };
+
+        function checkStatus() {
+            var userToken = localStorage.getItem('userToken');
+            var userEmail = localStorage.getItem('userEmail');
+
+            if (!userToken && !userEmail) {
+                window.location.href = "/login.html";
+            }
+            else {
+
+                params={
+                    where:["email," + userEmail]
+                };
+
+                SDK.queryData("conferenceForm", "otherinfo", params, function(response){
+                    console.log(response);
+
+                    document.getElementById("emergencyContactFirstName").value = response.payload.results[0].emergencycontactfullname
+                    document.getElementById("emergencyContactNumber").value = response.payload.results[0].emergencycontactnumber
+                    document.getElementById("emergencyContactEmail").value = response.payload.results[0].emergencycontactemail
+                    document.getElementById("specialDiet").value = response.payload.results[0].specialdiet
+                });
+            }
+
         };
 
         function submitUpdatedData() {

@@ -68,7 +68,7 @@
             <br />
 
             <div class="container text-right log-out">
-                <a href="login.html" class="">Log out</a>
+                <button onclick="event.preventDefault(); logOut();">Log out</button>
             </div>
 
             <br /><br />
@@ -87,8 +87,8 @@
                         <br />
                         <div class="signup-form">
 
-                            <!-- <form onsubmit="event.preventDefault(); submitUpdatedData();" method="post" enctype="multipart/form-data"> -->
-                            <form class="dv-add-oneto:conferenceForm:registration">
+                            <form onsubmit="event.preventDefault(); submitUpdatedData();" enctype="multipart/form-data">
+                            <!-- <form class="dv-add-oneto:conferenceForm:registration"> -->
                                 <div class="row">
                                     <div class="col-md-12 text-center">
                                         <div class="image-upload">
@@ -1143,23 +1143,21 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
 
     <script type="text/javascript">
-        window.onload = setEmail;
+        window.onload = checkStatus;
 
         devlessCallbacks(function(resp){
-            console.log(resp);
             if (resp.payload.status_code === 609) {
                 window.location.href="/secondform.html";
             }
             else {
                 document.getElementById("returnError").innerHTML = "Please log out and try later!";
             }
-        })
+        });
 
         function setEmail() {
             var obtainedEmail = localStorage.getItem('userEmail');
             document.getElementById('emailAddress').value = obtainedEmail;
         };
-
 
         $(function () {
             $(":file").change(function () {
@@ -1175,6 +1173,48 @@
             $('#myImg').attr('src', e.target.result);
         };
 
+        function checkStatus() {
+            
+            var userToken = localStorage.getItem('userToken');
+            var userEmail = localStorage.getItem('userEmail');
+
+            if (!userToken && !userEmail) {
+                window.location.href = "/login.html";
+            }
+            else {
+
+                setEmail();
+
+                params={
+                    where:["email," + userEmail]
+                };
+
+                SDK.queryData("conferenceForm", "registration", params, function(response){
+                    console.log(response);
+
+                    $('#myImg').attr('src', response.payload.results[0].img);
+
+                    document.getElementById("firstName").value = response.payload.results[0].firstname;
+                    document.getElementById("lastName").value = response.payload.results[0].lastname;
+                    document.getElementById("preferredName").value = response.payload.results[0].badgename
+                    document.getElementById("gender").value = response.payload.results[0].gender
+                    document.getElementById("countryCode").value = response.payload.results[0].countrycode
+                    document.getElementById("phoneNumber").value = response.payload.results[0].phonenumber
+                    document.getElementById("birthDay").value = response.payload.results[0].birthday
+                    document.getElementById("birthMonth").value = response.payload.results[0].birthmonth
+                    document.getElementById("birthYear").value = response.payload.results[0].birthyear
+                    document.getElementById("emailAddress").value = response.payload.results[0].email
+                    document.getElementById("facebookProfile").value = response.payload.results[0].facebookurl
+                    document.getElementById("streetAddress").value = response.payload.results[0].streetaddress
+                    document.getElementById("city").value = response.payload.results[0].city
+                    document.getElementById("postalCode").value = response.payload.results[0].postalcode
+                    document.getElementById("birthCountry").value = response.payload.results[0].birthcountry
+                    document.getElementById("residencyCountry").value = response.payload.results[0].residencecountry
+                });
+            }
+
+        };
+
         var uploadField = document.getElementById("file-input");
 
         uploadField.onchange = function() {
@@ -1187,7 +1227,6 @@
 
         function submitUpdatedData() {
 
-            var image = document.getElementById("file-input").value
             var firstName = document.getElementById("firstName").value
             var lastName = document.getElementById("lastName").value
             var preferredName = document.getElementById("preferredName").value
@@ -1204,8 +1243,9 @@
             var postalCode = document.getElementById("postalCode").value
             var birthCountry = document.getElementById("birthCountry").value
             var residencyCountry = document.getElementById("residencyCountry").value
+
             
-            data = {
+            /* data = {
                 "img": image,
                 "firstname": firstName,
                 "lastname": lastName,
@@ -1219,7 +1259,8 @@
                 "birthyear": birthYear,
                 "email": emailAddress
             }
-            SDK.updateData("conferenceForm", "registration", "id", "1", data, function(response){console.log(response)});
+
+            SDK.updateData("conferenceForm", "registration", "id", "1", data, function(response){console.log(response)}); */
 
         }
 

@@ -174,14 +174,15 @@ input[type=number]::-webkit-outer-spin-button {
     width: 400px;
 }
 
-.log-out a {
+.log-out button {
     color: #fff;
     background-color: #3ba1da;
+    border: #3ba1da;
     border-radius: 3px;
-    padding: 10px 10px;
+    padding: 10px 30px;
 }
 
-.log-out a:hover {
+.log-out button:hover {
     color: #fff;
     background-color: #318ec4;
     text-decoration: none;

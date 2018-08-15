@@ -68,7 +68,7 @@
             <br />
 
             <div class="container text-right log-out">
-                <a href="login.html" class="">Log out</a>
+                <button onclick="event.preventDefault(); logOut();">Log out</button>
             </div>
 
             <br /><br />
@@ -274,6 +274,8 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
 
     <script type="text/javascript">
+        window.onload = checkStatus;
+
         $(function () {
             $(":file").change(function () {
                 if (this.files && this.files[0]) {
@@ -298,12 +300,58 @@
         };
 
         function postArm() {
-            var y = document.getElementById("prearmattendance");
+            var y = document.getElementById("postarmattendance");
             if (y.checked === true) {
                 y.value = "yes";
             } else {
                 y.value = "no";
             }
+        };
+
+        function logOut() {
+            localStorage.removeItem('userToken');
+            localStorage.removeItem('userEmail');
+            window.location.href = "/login.html";
+        };
+
+        function checkStatus() {
+            var userToken = localStorage.getItem('userToken');
+            var userEmail = localStorage.getItem('userEmail');
+
+            if (!userToken && !userEmail) {
+                window.location.href = "/login.html";
+            }
+            else {
+
+                params={
+                    where:["email," + userEmail]
+                };
+
+                SDK.queryData("conferenceForm", "secondform", params, function(response){
+                    console.log(response);
+
+                    document.getElementById("nmo").value = response.payload.results[0].nmo
+                    document.getElementById("statenmo").value = response.payload.results[0].statenmo
+                    document.getElementById("participationstatus").value = response.payload.results[0].participationstatus
+                    document.getElementById("attendsession").value = response.payload.results[0].attendsession
+                    document.getElementById("nmoposition").value = response.payload.results[0].nmoposition
+
+                    if(response.payload.results[0].prearmattendance === 'yes') {
+                        document.getElementById("prearmattendance").checked === true;
+                    }
+                    else {
+                        document.getElementById("prearmattendance").checked === false;
+                    }
+
+                    if(response.payload.results[0].postarmattendance === 'yes') {
+                        document.getElementById("postarmattendance").checked === true;
+                    }
+                    else {
+                        document.getElementById("postarmattendance").checked === false;
+                    }
+                });
+            }
+
         };
 
         function submitUpdatedData() {

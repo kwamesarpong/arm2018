@@ -68,7 +68,7 @@
             <br />
 
             <div class="container text-right log-out">
-                <a href="login.html" class="">Log out</a>
+                <button onclick="event.preventDefault(); logOut();">Log out</button>
             </div>
 
             <br /><br />
@@ -722,6 +722,8 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
 
     <script type="text/javascript">
+        window.onload = checkStatus;
+
         $(function () {
             $(":file").change(function () {
                 if (this.files && this.files[0]) {
@@ -761,6 +763,63 @@
             } else {
                 z.value = "no";
             }
+        };
+
+        function logOut() {
+            localStorage.removeItem('userToken');
+            localStorage.removeItem('userEmail');
+            window.location.href = "/login.html";
+        };
+
+        function checkStatus() {
+            var userToken = localStorage.getItem('userToken');
+            var userEmail = localStorage.getItem('userEmail');
+
+            if (!userToken && !userEmail) {
+                window.location.href = "/login.html";
+            }
+            else {
+
+                params={
+                    where:["email," + userEmail]
+                };
+
+                SDK.queryData("conferenceForm", "thirdform", params, function(response){
+                    console.log(response);
+
+                    document.getElementById("nationality").value = response.payload.results[0].nationality;
+                    document.getElementById("fullpassportname").value = response.payload.results[0].fullpassportname;
+                    document.getElementById("passportnumber").value = response.payload.results[0].passportnumber
+                    document.getElementById("dateofissue").value = response.payload.results[0].dateofissue
+                    document.getElementById("dateofexpiry").value = response.payload.results[0].dateofexpiry
+
+                    if(response.payload.results[0].othernationalityyesno === 'yes') {
+                        document.getElementById("othernationalityyesno").checked === true;
+                    }
+                    else {
+                        document.getElementById("othernationalityyesno").checked === false;
+                    }
+
+                    document.getElementById("othernationality").value = response.payload.results[0].othernationality
+
+                    if(response.payload.results[0].needvisa === 'yes') {
+                        document.getElementById("needvisa").checked === true;
+                    }
+                    else {
+                        document.getElementById("needvisa").checked === false;
+                    }
+
+                    if(response.payload.results[0].havevisa === 'yes') {
+                        document.getElementById("havevisa").checked === true;
+                    }
+                    else {
+                        document.getElementById("havevisa").checked === false;
+                    }
+
+                    document.getElementById("durationofstay").value = response.payload.results[0].durationofstay
+                });
+            }
+
         };
 
         function submitUpdatedData() {

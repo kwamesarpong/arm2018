@@ -68,7 +68,7 @@
             <br />
 
             <div class="container text-right log-out">
-                <a href="login.html" class="">Log out</a>
+                <button onclick="event.preventDefault(); logOut();">Log out</button>
             </div>
 
             <br /><br />
@@ -234,6 +234,8 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
 
     <script type="text/javascript">
+        window.onload = checkStatus;
+
         $(function () {
             $(":file").change(function () {
                 if (this.files && this.files[0]) {
@@ -246,6 +248,45 @@
 
         function imageIsLoaded(e) {
             $('#myImg').attr('src', e.target.result);
+        };
+
+        function logOut() {
+            localStorage.removeItem('userToken');
+            localStorage.removeItem('userEmail');
+            window.location.href = "/login.html";
+        };
+
+        function checkStatus() {
+            var userToken = localStorage.getItem('userToken');
+            var userEmail = localStorage.getItem('userEmail');
+
+            if (!userToken && !userEmail) {
+                window.location.href = "/login.html";
+            }
+            else {
+
+                params={
+                    where:["email," + userEmail]
+                };
+
+                SDK.queryData("conferenceForm", "travelinformation", params, function(response){
+                    console.log(response);
+
+                    document.getElementById("arrivalDate").value = response.payload.results[0].arrivaldate;
+                    document.getElementById("aTransportationMeans").value = response.payload.results[0].atransportationmeans;
+                    document.getElementById("arrivalTerminal").value = response.payload.results[0].arrivalterminal
+                    document.getElementById("airline").value = response.payload.results[0].airline
+                    document.getElementById("aFlightNumber").value = response.payload.results[0].aflightnumber
+                    document.getElementById("arrivalTime").value = response.payload.results[0].arrivaltime
+                    document.getElementById("departureDate").value = response.payload.results[0].departuredate
+                    document.getElementById("dTransportationMeans").value = response.payload.results[0].dtransportationmeans
+                    document.getElementById("departureAirlineTerminal").value = response.payload.results[0].departureairlineterminal
+                    document.getElementById("departureAirline").value = response.payload.results[0].departureairline
+                    document.getElementById("dFlightNumber").value = response.payload.results[0].dflightnumber
+                    document.getElementById("departureTime").value = response.payload.results[0].departuretime
+                });
+            }
+
         };
 
         function submitUpdatedData() {
