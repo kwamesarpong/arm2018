@@ -67,8 +67,20 @@
 
             <br />
 
-            <div class="container text-right log-out">
-                <button onclick="event.preventDefault(); logOut();">Log out</button>
+            <div class="container log-out">
+                <div class="row">
+                    <div class="col-md-8 text-center">
+                        <!-- <div class="sub-header loading-message-div">
+                            <p id="waitloading" class="loading-message"></p>
+                        </div> -->
+                        <button type="button" id="lodmod" class="btn btn-primary loading-modal" data-toggle="modal" data-target="#myModal">
+                            Open modal
+                        </button>
+                    </div>
+                    <div class="col-md-4 text-right">
+                        <button onclick="event.preventDefault(); logOut();">Log out</button>
+                    </div>
+                </div>
             </div>
 
             <br /><br />
@@ -223,10 +235,8 @@
                                 <br /><br />
 
                                 <div class="row">
-                                    <div class="col-md-3"></div>
-                                    <div class="col-md-3">
-                                        <div class="sub-header wait-color" id="setLoading"></div>
-                                        <br />
+                                    <div class="col-md-6 text-center">
+                                        <div class="sub-header fail-color" id="returnError"></div>
                                     </div>
                                     <div class="col-md-3 text-center previous-page-padd">
                                         <!-- <button class="sub-header">Previous Page</button> -->
@@ -255,6 +265,21 @@
                     <div class="col-md-12 text-center">
                         <p class="sub-header">Copyright &copy; 2018 FGMSA-GHANA</p>
                     </div>
+                </div>
+            </div>
+
+            <!-- The Modal -->
+            <div class="modal fade modal-position" id="myModal">
+                <div class="modal-dialog">
+                <div class="modal-content">
+                    
+                    <!-- Modal body -->
+                    <div class="modal-body text-center">
+                        <p class="sub-header modal-body-padd">Please wait ...</p>
+                        <button type="button" id="closeMod" class="btn btn-danger loading-modal" data-dismiss="modal">Close</button>
+                    </div>
+                    
+                </div>
                 </div>
             </div>
         
@@ -323,6 +348,8 @@
             }
             else {
 
+                document.getElementById("lodmod").click();
+
                 params={
                     where:["email," + userEmail]
                 };
@@ -330,11 +357,11 @@
                 SDK.queryData("conferenceForm", "secondform", params, function(response){
                     console.log(response);
 
-                    document.getElementById("nmo").value = response.payload.results[0].nmo
-                    document.getElementById("statenmo").value = response.payload.results[0].statenmo
-                    document.getElementById("participationstatus").value = response.payload.results[0].participationstatus
-                    document.getElementById("attendsession").value = response.payload.results[0].attendsession
-                    document.getElementById("nmoposition").value = response.payload.results[0].nmoposition
+                    document.getElementById("nmo").value = response.payload.results[0].nmo;
+                    document.getElementById("statenmo").value = response.payload.results[0].statenmo;
+                    document.getElementById("participationstatus").value = response.payload.results[0].participationstatus;
+                    document.getElementById("attendsession").value = response.payload.results[0].attendsession;
+                    document.getElementById("nmoposition").value = response.payload.results[0].nmoposition;
 
                     if(response.payload.results[0].prearmattendance === 'yes') {
                         document.getElementById("prearmattendance").checked === true;
@@ -349,6 +376,8 @@
                     else {
                         document.getElementById("postarmattendance").checked === false;
                     }
+
+                    document.getElementById("closeMod").click();
                 });
             }
 
@@ -356,15 +385,15 @@
 
         function submitUpdatedData() {
 
-            document.getElementById("setLoading").innerHTML = "Please wait....";
+            document.getElementById("lodmod").click();
 
-            var nmo = document.getElementById("nmo").value
-            var statenmo = document.getElementById("statenmo").value
-            var participationstatus = document.getElementById("participationstatus").value
-            var attendsession = document.getElementById("attendsession").value
-            var nmoposition = document.getElementById("nmoposition").value
-            var prearmattendance = document.getElementById("prearmattendance").value
-            var postarmattendance = document.getElementById("postarmattendance").value
+            var nmo = document.getElementById("nmo").value;
+            var statenmo = document.getElementById("statenmo").value;
+            var participationstatus = document.getElementById("participationstatus").value;
+            var attendsession = document.getElementById("attendsession").value;
+            var nmoposition = document.getElementById("nmoposition").value;
+            var prearmattendance = document.getElementById("prearmattendance").value;
+            var postarmattendance = document.getElementById("postarmattendance").value;
 
             var obtainedEmail = localStorage.getItem('userEmail');
             
@@ -385,7 +414,8 @@
                         window.location.href = "/thirdform.html";
                     }
                     else {
-                        document.getElementById("setLoading").innerHTML = "Please logout and try again";
+                        document.getElementById("closeMod").click();
+                        document.getElementById("returnError").innerHTML = "Cannot save details at this time. Please try later!";
                     }
                 });
 

@@ -67,8 +67,20 @@
 
             <br />
 
-            <div class="container text-right log-out">
-                <button onclick="event.preventDefault(); logOut();">Log out</button>
+            <div class="container log-out">
+                <div class="row">
+                    <div class="col-md-8 text-center">
+                        <!-- <div class="sub-header loading-message-div">
+                            <p id="waitloading" class="loading-message"></p>
+                        </div> -->
+                        <button type="button" id="lodmod" class="btn btn-primary loading-modal" data-toggle="modal" data-target="#myModal">
+                            Open modal
+                        </button>
+                    </div>
+                    <div class="col-md-4 text-right">
+                        <button onclick="event.preventDefault(); logOut();">Log out</button>
+                    </div>
+                </div>
             </div>
 
             <br /><br />
@@ -123,9 +135,8 @@
                                 <br /><br />
 
                                 <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="sub-header wait-color" id="setLoading"></div>
-                                        <br />
+                                    <div class="col-md-6 text-center">
+                                        <div class="sub-header fail-color" id="returnError"></div>
                                     </div>
                                     <div class="col-md-3 text-center previous-page-padd">
                                         <!-- <button class="sub-header">Previous Page</button> -->
@@ -153,6 +164,21 @@
                     <div class="col-md-12 text-center">
                         <p class="sub-header">Copyright &copy; 2018 FGMSA-GHANA</p>
                     </div>
+                </div>
+            </div>
+
+            <!-- The Modal -->
+            <div class="modal fade modal-position" id="myModal">
+                <div class="modal-dialog">
+                <div class="modal-content">
+                    
+                    <!-- Modal body -->
+                    <div class="modal-body text-center">
+                        <p class="sub-header modal-body-padd">Please wait ...</p>
+                        <button type="button" id="closeMod" class="btn btn-danger loading-modal" data-dismiss="modal">Close</button>
+                    </div>
+                    
+                </div>
                 </div>
             </div>
         
@@ -204,6 +230,8 @@
             }
             else {
 
+                document.getElementById("lodmod").click();
+
                 params={
                     where:["email," + userEmail]
                 };
@@ -211,23 +239,26 @@
                 SDK.queryData("conferenceForm", "otherinfo", params, function(response){
                     console.log(response);
 
-                    document.getElementById("emergencyContactFirstName").value = response.payload.results[0].emergencycontactfullname
-                    document.getElementById("emergencyContactNumber").value = response.payload.results[0].emergencycontactnumber
-                    document.getElementById("emergencyContactEmail").value = response.payload.results[0].emergencycontactemail
-                    document.getElementById("specialDiet").value = response.payload.results[0].specialdiet
+                    document.getElementById("emergencyContactFirstName").value = response.payload.results[0].emergencycontactfullname;
+                    document.getElementById("emergencyContactNumber").value = response.payload.results[0].emergencycontactnumber;
+                    document.getElementById("emergencyContactEmail").value = response.payload.results[0].emergencycontactemail;
+                    document.getElementById("specialDiet").value = response.payload.results[0].specialdiet;
+
+                    document.getElementById("closeMod").click();
                 });
+                
             }
 
         };
 
         function submitUpdatedData() {
 
-            document.getElementById("setLoading").innerHTML = "Please wait....";
+            document.getElementById("lodmod").click();
 
-            var emergencyContactFullName = document.getElementById("emergencyContactFirstName").value
-            var emergencyContactNumber = document.getElementById("emergencyContactNumber").value
-            var emergencyContactEmail = document.getElementById("emergencyContactEmail").value
-            var specialDiet = document.getElementById("specialDiet").value
+            var emergencyContactFullName = document.getElementById("emergencyContactFirstName").value;
+            var emergencyContactNumber = document.getElementById("emergencyContactNumber").value;
+            var emergencyContactEmail = document.getElementById("emergencyContactEmail").value;
+            var specialDiet = document.getElementById("specialDiet").value;
 
             var obtainedEmail = localStorage.getItem('userEmail');
             
@@ -245,7 +276,8 @@
                         document.getElementById("setLoading").innerHTML = "Congratulations. You have successfully registered for the event. Please log out and wait for a confirmation email. Thank you.";
                     }
                     else {
-                        document.getElementById("setLoading").innerHTML = "Please logout and try again";
+                        document.getElementById("closeMod").click();
+                        document.getElementById("returnError").innerHTML = "Cannot save details at this time. Please try later!";
                     }
                 });
 

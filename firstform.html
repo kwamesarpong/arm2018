@@ -15,6 +15,7 @@
 
 </head>
 <body>
+    <!-- <div class="loading">Loading&#8230;</div> -->
     <div class="container-fluid reset-padding">
 
         <div class="">
@@ -67,8 +68,20 @@
 
             <br />
 
-            <div class="container text-right log-out">
-                <button onclick="event.preventDefault(); logOut();">Log out</button>
+            <div class="container log-out">
+                <div class="row">
+                    <div class="col-md-8 text-center">
+                        <!-- <div class="sub-header loading-message-div">
+                            <p id="waitloading" class="loading-message"></p>
+                        </div> -->
+                        <button type="button" id="lodmod" class="btn btn-primary loading-modal" data-toggle="modal" data-target="#myModal">
+                            Open modal
+                        </button>
+                    </div>
+                    <div class="col-md-4 text-right">
+                        <button onclick="event.preventDefault(); logOut();">Log out</button>
+                    </div>
+                </div>
             </div>
 
             <br /><br />
@@ -88,7 +101,6 @@
                         <div class="signup-form">
 
                             <form onsubmit="event.preventDefault(); submitUpdatedData();" enctype="multipart/form-data">
-                            <!-- <form class="dv-add-oneto:conferenceForm:registration"> -->
                                 <div class="row">
                                     <div class="col-md-12 text-center">
                                         <div class="image-upload">
@@ -96,16 +108,16 @@
                                                 <img src="img/profile.png" id="myImg" class="fileupload-image" />
                                             </label>
                                         
-                                            <input id="file-input" type="file" accept="image/*" name="img" required />
+                                            <input id="file-input" type="file" accept="image/*" name="img" />
                                         </div>
-                                        <p>Upload your personal photo in png or jpg format. (Limit 3mb) <br />
+                                        <p>Upload your personal photo in png or jpg format. (Limit 3MB) <br />
                                             This will appear on your badge/tag.</p>
                                         <hr />
                                     </div>
 
                                     <div class="col-md-6">
                                         <br />
-                                        <h6 class="sub-header">First Name</h6>
+                                        <h6 class="sub-header">First Name (As in Passport)</h6>
                                         <p class="sub-header"><input type="text" id="firstName" name="firstname" required /></p>
                                         <br />
 
@@ -113,7 +125,7 @@
 
                                     <div class="col-md-6">
                                         <br />
-                                        <h6 class="sub-header">Last Name</h6>
+                                        <h6 class="sub-header">Last Name (As in Passport)</h6>
                                         <p class="sub-header"><input type="text" id="lastName" name="lastname" required /></p>
                                         <br />
                                     </div>
@@ -1093,9 +1105,8 @@
                                 <br /><br />
 
                                 <div class="row">
-                                    <div class="col-md-3"></div>
-                                    <div class="col-md-3">
-                                        <div class="dv-processing wait-color sub-header" id="returnError">Please wait...</div>
+                                    <div class="col-md-6 text-center">
+                                        <div class="fail-color sub-header" id="returnError"></div>
                                     </div>
                                     <div class="col-md-3">
                                         <button type="button" class="sub-header" disabled>Previous Page</button>
@@ -1126,6 +1137,21 @@
                     </div>
                 </div>
             </div>
+
+            <!-- The Modal -->
+            <div class="modal fade modal-position" id="myModal">
+                <div class="modal-dialog">
+                <div class="modal-content">
+                    
+                    <!-- Modal body -->
+                    <div class="modal-body text-center">
+                        <p class="sub-header modal-body-padd">Please wait ...</p>
+                        <button type="button" id="closeMod" class="btn btn-danger loading-modal" data-dismiss="modal">Close</button>
+                    </div>
+                    
+                </div>
+                </div>
+            </div>
         
 
     </div>
@@ -1144,15 +1170,6 @@
 
     <script type="text/javascript">
         window.onload = checkStatus;
-
-        devlessCallbacks(function(resp){
-            if (resp.payload.status_code === 609) {
-                window.location.href="/secondform.html";
-            }
-            else {
-                document.getElementById("returnError").innerHTML = "Please log out and try later!";
-            }
-        });
 
         function setEmail() {
             var obtainedEmail = localStorage.getItem('userEmail');
@@ -1185,6 +1202,8 @@
 
                 setEmail();
 
+                document.getElementById("lodmod").click();
+
                 params={
                     where:["email," + userEmail]
                 };
@@ -1196,20 +1215,23 @@
 
                     document.getElementById("firstName").value = response.payload.results[0].firstname;
                     document.getElementById("lastName").value = response.payload.results[0].lastname;
-                    document.getElementById("preferredName").value = response.payload.results[0].badgename
-                    document.getElementById("gender").value = response.payload.results[0].gender
-                    document.getElementById("countryCode").value = response.payload.results[0].countrycode
-                    document.getElementById("phoneNumber").value = response.payload.results[0].phonenumber
-                    document.getElementById("birthDay").value = response.payload.results[0].birthday
-                    document.getElementById("birthMonth").value = response.payload.results[0].birthmonth
-                    document.getElementById("birthYear").value = response.payload.results[0].birthyear
-                    document.getElementById("emailAddress").value = response.payload.results[0].email
-                    document.getElementById("facebookProfile").value = response.payload.results[0].facebookurl
-                    document.getElementById("streetAddress").value = response.payload.results[0].streetaddress
-                    document.getElementById("city").value = response.payload.results[0].city
-                    document.getElementById("postalCode").value = response.payload.results[0].postalcode
-                    document.getElementById("birthCountry").value = response.payload.results[0].birthcountry
-                    document.getElementById("residencyCountry").value = response.payload.results[0].residencecountry
+                    document.getElementById("preferredName").value = response.payload.results[0].badgename;
+                    document.getElementById("gender").value = response.payload.results[0].gender;
+                    document.getElementById("countryCode").value = response.payload.results[0].countrycode;
+                    document.getElementById("phoneNumber").value = response.payload.results[0].phonenumber;
+                    document.getElementById("birthDay").value = response.payload.results[0].birthday;
+                    document.getElementById("birthMonth").value = response.payload.results[0].birthmonth;
+                    document.getElementById("birthYear").value = response.payload.results[0].birthyear;
+                    document.getElementById("emailAddress").value = response.payload.results[0].email;
+                    document.getElementById("facebookProfile").value = response.payload.results[0].facebookurl;
+                    document.getElementById("streetAddress").value = response.payload.results[0].streetaddress;
+                    document.getElementById("city").value = response.payload.results[0].city;
+                    document.getElementById("postalCode").value = response.payload.results[0].postalcode;
+                    document.getElementById("birthCountry").value = response.payload.results[0].birthcountry;
+                    document.getElementById("residencyCountry").value = response.payload.results[0].residencecountry;
+                    
+                    document.getElementById("closeMod").click();
+                    
                 });
             }
 
@@ -1227,41 +1249,110 @@
 
         function submitUpdatedData() {
 
-            var firstName = document.getElementById("firstName").value
-            var lastName = document.getElementById("lastName").value
-            var preferredName = document.getElementById("preferredName").value
-            var gender = document.getElementById("gender").value
-            var countryCode = document.getElementById("countryCode").value
-            var phoneNumber = document.getElementById("phoneNumber").value
-            var birthDay = document.getElementById("birthDay").value
-            var birthMonth = document.getElementById("birthMonth").value
-            var birthYear = document.getElementById("birthYear").value
-            var emailAddress = document.getElementById("emailAddress").value
-            var facebookProfile = document.getElementById("facebookProfile").value
-            var streetAddress = document.getElementById("streetAddress").value
-            var city = document.getElementById("city").value
-            var postalCode = document.getElementById("postalCode").value
-            var birthCountry = document.getElementById("birthCountry").value
-            var residencyCountry = document.getElementById("residencyCountry").value
+            document.getElementById("lodmod").click();
 
-            
-            data = {
-                "img": image,
-                "firstname": firstName,
-                "lastname": lastName,
-                "badgename": preferredName,
-                "firstname": firstName,
-                "gender": gender,
-                "countrycode": countryCode,
-                "phonenumber": phoneNumber,
-                "birthday": birthDay,
-                "birthmonth": birthMonth,
-                "birthyear": birthYear,
-                "email": emailAddress
+            var firstName = document.getElementById("firstName").value;
+            var lastName = document.getElementById("lastName").value;
+            var preferredName = document.getElementById("preferredName").value;
+            var gender = document.getElementById("gender").value;
+            var countryCode = document.getElementById("countryCode").value;
+            var phoneNumber = document.getElementById("phoneNumber").value;
+            var birthDay = document.getElementById("birthDay").value;
+            var birthMonth = document.getElementById("birthMonth").value;
+            var birthYear = document.getElementById("birthYear").value;
+            var emailAddress = document.getElementById("emailAddress").value;
+            var facebookProfile = document.getElementById("facebookProfile").value;
+            var streetAddress = document.getElementById("streetAddress").value;
+            var city = document.getElementById("city").value;
+            var postalCode = document.getElementById("postalCode").value;
+            var birthCountry = document.getElementById("birthCountry").value;
+            var residencyCountry = document.getElementById("residencyCountry").value;
+
+
+            var file = document.getElementById("file-input").files[0];
+            console.log(file)
+
+            if(file === undefined) {
+
+                data = {
+                        "firstname": firstName,
+                        "lastname": lastName,
+                        "badgename": preferredName,
+                        "firstname": firstName,
+                        "gender": gender,
+                        "countrycode": countryCode,
+                        "phonenumber": phoneNumber,
+                        "birthday": birthDay,
+                        "birthmonth": birthMonth,
+                        "birthyear": birthYear,
+                        "email": emailAddress
+                    }
+
+                SDK.updateData("conferenceForm", "registration", "email", emailAddress, data,
+                    function(response) {
+                        console.log(response);
+                        if(response.status_code === 619) {
+                            window.location.href = "/secondform.html";
+                        }
+                        else {
+                            document.getElementById("closeMod").click();
+                            document.getElementById("returnError").innerHTML = "Cannot save details at this time. Please try later!";
+                        }
+                    });
+
+            }
+            else {
+
+                var reader = new FileReader();
+                var that = this;
+                reader.readAsDataURL(file);
+                reader.onload = function() {
+                var file = reader.result;
+                SDK.addData(
+                    "conferenceForm",
+                    "image_upload", {
+                    img: file
+                    },
+                    function(rep) {
+                    var image = rep["payload"];
+
+                    data = {
+                        "img": image,
+                        "firstname": firstName,
+                        "lastname": lastName,
+                        "badgename": preferredName,
+                        "firstname": firstName,
+                        "gender": gender,
+                        "countrycode": countryCode,
+                        "phonenumber": phoneNumber,
+                        "birthday": birthDay,
+                        "birthmonth": birthMonth,
+                        "birthyear": birthYear,
+                        "email": emailAddress
+                    }
+
+                SDK.updateData("conferenceForm", "registration", "email", emailAddress, data,
+                    function(response) {
+                        console.log(response);
+                        if(response.status_code === 619) {
+                            window.location.href = "/secondform.html";
+                        }
+                        else {
+                            document.getElementById("closeMod").click();
+                            document.getElementById("returnError").innerHTML = "Cannot save details at this time. Please try later!";
+                        }
+                    });
+
+                    }
+                );
+                };
+                reader.onerror = function(error) {
+                    console.log("Error: ", error);
+                };
+
             }
 
-            SDK.updateData("conferenceForm", "registration", "email", emailAddress, data, function(response){console.log(response)});
-
+            
         }
 
     </script>

@@ -67,8 +67,20 @@
 
             <br />
 
-            <div class="container text-right log-out">
-                <button onclick="event.preventDefault(); logOut();">Log out</button>
+            <div class="container log-out">
+                <div class="row">
+                    <div class="col-md-8 text-center">
+                        <!-- <div class="sub-header loading-message-div">
+                            <p id="waitloading" class="loading-message"></p>
+                        </div> -->
+                        <button type="button" id="lodmod" class="btn btn-primary loading-modal" data-toggle="modal" data-target="#myModal">
+                            Open modal
+                        </button>
+                    </div>
+                    <div class="col-md-4 text-right">
+                        <button onclick="event.preventDefault(); logOut();">Log out</button>
+                    </div>
+                </div>
             </div>
 
             <br /><br />
@@ -184,10 +196,8 @@
                                 <br /><br />
 
                                 <div class="row">
-                                    <div class="col-md-3"></div>
-                                    <div class="col-md-3">
-                                        <div class="sub-header wait-color" id="setLoading"></div>
-                                        <br />
+                                    <div class="col-md-6 text-center">
+                                        <div class="sub-header fail-color" id="returnError"></div>
                                     </div>
                                     <div class="col-md-3 text-center previous-page-padd">
                                         <!-- <button class="sub-header">Previous Page</button> -->
@@ -215,6 +225,21 @@
                     <div class="col-md-12 text-center">
                         <p class="sub-header">Copyright &copy; 2018 FGMSA-GHANA</p>
                     </div>
+                </div>
+            </div>
+
+            <!-- The Modal -->
+            <div class="modal fade modal-position" id="myModal">
+                <div class="modal-dialog">
+                <div class="modal-content">
+                    
+                    <!-- Modal body -->
+                    <div class="modal-body text-center">
+                        <p class="sub-header modal-body-padd">Please wait ...</p>
+                        <button type="button" id="closeMod" class="btn btn-danger loading-modal" data-dismiss="modal">Close</button>
+                    </div>
+                    
+                </div>
                 </div>
             </div>
         
@@ -265,6 +290,8 @@
             }
             else {
 
+                document.getElementById("lodmod").click();
+
                 params={
                     where:["email," + userEmail]
                 };
@@ -274,16 +301,18 @@
 
                     document.getElementById("arrivalDate").value = response.payload.results[0].arrivaldate;
                     document.getElementById("aTransportationMeans").value = response.payload.results[0].atransportationmeans;
-                    document.getElementById("arrivalTerminal").value = response.payload.results[0].arrivalterminal
-                    document.getElementById("airline").value = response.payload.results[0].airline
-                    document.getElementById("aFlightNumber").value = response.payload.results[0].aflightnumber
-                    document.getElementById("arrivalTime").value = response.payload.results[0].arrivaltime
-                    document.getElementById("departureDate").value = response.payload.results[0].departuredate
-                    document.getElementById("dTransportationMeans").value = response.payload.results[0].dtransportationmeans
-                    document.getElementById("departureAirlineTerminal").value = response.payload.results[0].departureairlineterminal
-                    document.getElementById("departureAirline").value = response.payload.results[0].departureairline
-                    document.getElementById("dFlightNumber").value = response.payload.results[0].dflightnumber
-                    document.getElementById("departureTime").value = response.payload.results[0].departuretime
+                    document.getElementById("arrivalTerminal").value = response.payload.results[0].arrivalterminal;
+                    document.getElementById("airline").value = response.payload.results[0].airline;
+                    document.getElementById("aFlightNumber").value = response.payload.results[0].aflightnumber;
+                    document.getElementById("arrivalTime").value = response.payload.results[0].arrivaltime;
+                    document.getElementById("departureDate").value = response.payload.results[0].departuredate;
+                    document.getElementById("dTransportationMeans").value = response.payload.results[0].dtransportationmeans;
+                    document.getElementById("departureAirlineTerminal").value = response.payload.results[0].departureairlineterminal;
+                    document.getElementById("departureAirline").value = response.payload.results[0].departureairline;
+                    document.getElementById("dFlightNumber").value = response.payload.results[0].dflightnumber;
+                    document.getElementById("departureTime").value = response.payload.results[0].departuretime;
+
+                    document.getElementById("closeMod").click();
                 });
             }
 
@@ -291,21 +320,21 @@
 
         function submitUpdatedData() {
 
-            document.getElementById("setLoading").innerHTML = "Please wait....";
+            document.getElementById("lodmod").click();
 
-            var arrivalDate = document.getElementById("arrivalDate").value
-            var aTransportationMeans = document.getElementById("aTransportationMeans").value
-            var arrivalTerminal = document.getElementById("arrivalTerminal").value
-            var airline = document.getElementById("airline").value
-            var aFlightNumber = document.getElementById("aFlightNumber").value
-            var arrivalTime = document.getElementById("arrivalTime").value
+            var arrivalDate = document.getElementById("arrivalDate").value;
+            var aTransportationMeans = document.getElementById("aTransportationMeans").value;
+            var arrivalTerminal = document.getElementById("arrivalTerminal").value;
+            var airline = document.getElementById("airline").value;
+            var aFlightNumber = document.getElementById("aFlightNumber").value;
+            var arrivalTime = document.getElementById("arrivalTime").value;
 
-            var departureDate = document.getElementById("departureDate").value
-            var dTransportationMeans = document.getElementById("dTransportationMeans").value
-            var departureAirlineTerminal = document.getElementById("departureAirlineTerminal").value
-            var departureAirline = document.getElementById("departureAirline").value
-            var dFlightNumber = document.getElementById("dFlightNumber").value
-            var departureTime = document.getElementById("departureTime").value
+            var departureDate = document.getElementById("departureDate").value;
+            var dTransportationMeans = document.getElementById("dTransportationMeans").value;
+            var departureAirlineTerminal = document.getElementById("departureAirlineTerminal").value;
+            var departureAirline = document.getElementById("departureAirline").value;
+            var dFlightNumber = document.getElementById("dFlightNumber").value;
+            var departureTime = document.getElementById("departureTime").value;
 
             var obtainedEmail = localStorage.getItem('userEmail');
             
@@ -331,7 +360,8 @@
                         window.location.href = "/fifthform.html";
                     }
                     else {
-                        document.getElementById("setLoading").innerHTML = "Please logout and try again";
+                        document.getElementById("closeMod").click();
+                        document.getElementById("returnError").innerHTML = "Cannot save details at this time. Please try later!";
                     }
                 });
 
