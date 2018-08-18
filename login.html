@@ -117,7 +117,6 @@
 
                                 <br />
                                 <div class="sub-header fail-color" id="setError"></div>
-                                <div class="sub-header wait-color" id="setLoading"></div>
                                 <br />
 
                                 <div class="row">
@@ -137,6 +136,16 @@
                 </div>
             </div>
             
+        </div>
+
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 text-center">
+                    <button type="button" id="lodmod" class="btn btn-primary loading-modal" data-toggle="modal" data-target="#myModal">
+                        Open modal
+                    </button>
+                </div>
+            </div>
         </div>
 
         <br /><br /><br />
@@ -195,6 +204,21 @@
                     </div>
                 </div>
             </div>
+
+            <!-- The Modal -->
+            <div class="modal fade modal-position" id="myModal">
+                <div class="modal-dialog">
+                <div class="modal-content">
+                    
+                    <!-- Modal body -->
+                    <div class="modal-body text-center">
+                        <p class="sub-header modal-body-padd">Please wait ...</p>
+                        <button type="button" id="closeMod" class="btn btn-danger loading-modal" data-dismiss="modal">Close</button>
+                    </div>
+                    
+                </div>
+                </div>
+            </div>
         
 
     </div>
@@ -223,7 +247,7 @@
 
         function submitUpdatedData() {
 
-            document.getElementById("setLoading").innerHTML = "Please wait....";
+            document.getElementById("lodmod").click();
 
             var email = document.getElementById("email").value
             var password = document.getElementById("changePword").value
@@ -231,11 +255,11 @@
             SDK.call('devless', 'login', [null, email, null, password],
             function(response){
                 if(response.payload.result == false) {
+                    document.getElementById("closeMod").click();
                     document.getElementById("setError").innerHTML = "Email or password incorrect!";
-                    document.getElementById("setLoading").innerHTML = "";
                 }
                 else {
-                    document.getElementById("setLoading").innerHTML = "";
+                    document.getElementById("closeMod").click();
                     SDK.setToken(response.payload.result.token);
                     console.log(response);
                     localStorage.setItem('userToken', response.payload.result.token);

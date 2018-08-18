@@ -99,7 +99,7 @@
                         <div class="col-md-4"></div>
                         <div class="col-md-4 signup-form">
 
-                            <form class="dv-signup" action="/login.html">
+                            <form onsubmit="event.preventDefault(); submitUpdatedData();">
                                 <h6 class="sub-header">Email Address</h6>
                                 <p class="sub-header"><input type="email" name="email" required /></p>
                                 <br />
@@ -115,8 +115,8 @@
                                     </div>
                                 </div>
 
-                                <div class="dv-processing wait-color sub-header">Please wait...</div>
-                                <div class="dv-notify-failed fail-color sub-header">Email may be wrong or currently used to register.</div>
+                                <br />
+                                <div class="sub-header fail-color" id="setError"></div>
                                 <br />
 
                                 <div class="row">
@@ -137,6 +137,16 @@
                 </div>
             </div>
             
+        </div>
+
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 text-center">
+                    <button type="button" id="lodmod" class="btn btn-primary loading-modal" data-toggle="modal" data-target="#myModal">
+                        Open modal
+                    </button>
+                </div>
+            </div>
         </div>
 
         <br /><br /><br />
@@ -195,6 +205,21 @@
                     </div>
                 </div>
             </div>
+
+            <!-- The Modal -->
+            <div class="modal fade modal-position" id="myModal">
+                <div class="modal-dialog">
+                <div class="modal-content">
+                    
+                    <!-- Modal body -->
+                    <div class="modal-body text-center">
+                        <p class="sub-header modal-body-padd">Please wait ...</p>
+                        <button type="button" id="closeMod" class="btn btn-danger loading-modal" data-dismiss="modal">Close</button>
+                    </div>
+                    
+                </div>
+                </div>
+            </div>
         
 
     </div>
@@ -212,19 +237,6 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
 
     <script type="text/javascript">
-        /* dvInterceptSubmission = function(resp) {
-            
-            data = { "email": resp.registerperson.email };
-            SDK.addData("conferenceForm", "registration", data,  function(response){
-                console.log(response);
-            });
-
-            return resp;
-        } */
-
-        /* devlessCallbacks(function(resp){
-            console.log(resp);
-        }) */
 
         function showHide() {
             var x = document.getElementById("changePword");
@@ -234,6 +246,33 @@
                 x.type = "password";
             }
         }
+
+        function submitUpdatedData() {
+
+            document.getElementById("lodmod").click();
+
+            var email = document.getElementById("email").value
+            var password = document.getElementById("changePword").value
+
+            SDK.call('devless', 'signUp', [email, password, null, null, null, null, null],
+            function(response){
+                console.log(response);
+                /* if(response.payload.result == false) {
+                    document.getElementById("closeMod").click();
+                    document.getElementById("setError").innerHTML = "Email or password incorrect!";
+                }
+                else {
+                    document.getElementById("closeMod").click();
+                    SDK.setToken(response.payload.result.token);
+                    console.log(response);
+                    localStorage.setItem('userToken', response.payload.result.token);
+                    localStorage.setItem('userEmail', response.payload.result.profile.email);
+                    window.location.href = "/firstform.html";
+                } */
+                
+            });
+
+        };
     </script>
 </body>
 
