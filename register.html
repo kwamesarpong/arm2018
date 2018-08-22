@@ -101,7 +101,7 @@
 
                             <form onsubmit="event.preventDefault(); submitUpdatedData();">
                                 <h6 class="sub-header">Email Address</h6>
-                                <p class="sub-header"><input type="email" name="email" required /></p>
+                                <p class="sub-header"><input type="email" id="userEmail" name="email" required /></p>
                                 <br />
 
                                 <h6 class="sub-header">Password</h6>
@@ -251,23 +251,21 @@
 
             document.getElementById("lodmod").click();
 
-            var email = document.getElementById("email").value
+            var email = document.getElementById("userEmail").value
             var password = document.getElementById("changePword").value
 
             SDK.call('devless', 'signUp', [email, password, null, null, null, null, null],
             function(response){
                 console.log(response);
-                /* if(response.payload.result == false) {
+                /* if(response.status_code == 1000) {
                     document.getElementById("closeMod").click();
-                    document.getElementById("setError").innerHTML = "Email or password incorrect!";
+                    console.log(response);
+                    localStorage.setItem('userEmail', response.payload);
+                    window.location.href = "/login.html";
                 }
                 else {
                     document.getElementById("closeMod").click();
-                    SDK.setToken(response.payload.result.token);
-                    console.log(response);
-                    localStorage.setItem('userToken', response.payload.result.token);
-                    localStorage.setItem('userEmail', response.payload.result.profile.email);
-                    window.location.href = "/firstform.html";
+                    document.getElementById("setError").innerHTML = "Email or password incorrect!";
                 } */
                 
             });
