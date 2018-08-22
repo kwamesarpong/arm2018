@@ -224,7 +224,7 @@
     </div>
     
 
-    <script src="http://fgmsa.herokuapp.com/js/devless-sdk.js" class="devless-connection" devless-con-token="13cb9695a2e39140de7895dda9a24e24"  ></script>
+    <script src="https://fgmsa.herokuapp.com/js/devless-sdk.js" class="devless-connection" devless-con-token="13cb9695a2e39140de7895dda9a24e24"  ></script>
 
     <!-- jQuery library -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -254,6 +254,7 @@
 
             SDK.call('devless', 'login', [null, email, null, password],
             function(response){
+                console.log(response);
                 if(response.payload.result == false) {
                     document.getElementById("closeMod").click();
                     document.getElementById("setError").innerHTML = "Email or password incorrect!";
