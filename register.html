@@ -92,8 +92,12 @@
             <br /><br />
 
             <div class="container">
-                <div class="col-md-">
+                <div>
                     <h5 class="sub-header">Sign up to register</h5>
+                    <br />
+                    <div class="text-center">
+                        <p class="sub-header wait-color">Please do well to use an email address which you can easily be contacted on.</p>
+                    </div>
                     <br />
                     <div class="row">
                         <div class="col-md-4"></div>
@@ -257,16 +261,16 @@
             SDK.call('devless', 'signUp', [email, password, null, null, null, null, null],
             function(response){
                 console.log(response);
-                /* if(response.status_code == 1000) {
+                if(response.payload.result) {
                     document.getElementById("closeMod").click();
-                    console.log(response);
-                    localStorage.setItem('userEmail', response.payload);
-                    window.location.href = "/login.html";
+                    localStorage.setItem('userToken', response.payload.result.token);
+                    localStorage.setItem('userEmail', response.payload.result.profile.email);
+                    window.location.href = "/firstform.html";
                 }
                 else {
                     document.getElementById("closeMod").click();
-                    document.getElementById("setError").innerHTML = "Email or password incorrect!";
-                } */
+                    document.getElementById("setError").innerHTML = "Email may have been used! Please use a different email.";
+                }
                 
             });
 

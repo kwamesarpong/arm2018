@@ -1211,7 +1211,12 @@
                 SDK.queryData("conferenceForm", "registration", params, function(response){
                     console.log(response);
 
-                    $('#myImg').attr('src', response.payload.results[0].img);
+                    if(response.payload.results[0].img == null) {
+                        $('#myImg').attr('src', "img/profile.png");
+                    }
+                    else {
+                        $('#myImg').attr('src', response.payload.results[0].img);
+                    }
 
                     document.getElementById("firstName").value = response.payload.results[0].firstname;
                     document.getElementById("lastName").value = response.payload.results[0].lastname;
