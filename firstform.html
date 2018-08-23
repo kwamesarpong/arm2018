@@ -1190,6 +1190,12 @@
             $('#myImg').attr('src', e.target.result);
         };
 
+        function logOut() {
+            localStorage.removeItem('userToken');
+            localStorage.removeItem('userEmail');
+            window.location.href = "/login.html";
+        };
+
         function checkStatus() {
             
             var userToken = localStorage.getItem('userToken');
