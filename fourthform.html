@@ -271,34 +271,6 @@
                                     </div>
 
                                     <div class="col-md-12 text-center">
-                                        <img src="img/tshirts/hoodie.jpg" width="300" height="180" />
-                                    </div>
-
-                                    <div class="col-md-6">
-                                        <br />
-                                        <h6 class="sub-header">IFMSA Hoodie</h6>
-                                        <p class="sub-header">
-                                            <select name="ifmsahoodie" id="ifmsaHoodie">
-                                                <option value="">Select size</option>
-                                                <option value="XS">XS</option>
-                                                <option value="S">S</option>
-                                                <option value="M">M</option>
-                                                <option value="L">L</option>
-                                                <option value="XL">XL</option>
-                                                <option value="XXL">XXL</option>
-                                            </select>
-                                        </p>
-                                        <br />
-                                    </div>
-
-                                    <div class="col-md-6">
-                                        <br />
-                                        <h6 class="sub-header">Number of Hoodies needed</h6>
-                                        <p class="sub-header"><input type="text" name="ifmsahoodienum" id="ifmsaHoodieNum" /></p>
-                                        <br />
-                                    </div>
-
-                                    <div class="col-md-12 text-center">
                                         <img src="img/tshirts/ifmsa.png" width="300" height="150" />
                                     </div>
 
@@ -445,8 +417,6 @@
                     document.getElementById("scomeShirtNum").value = response.payload.results[0].scomeShirtNum;
                     document.getElementById("scophShirt").value = response.payload.results[0].scophShirt;
                     document.getElementById("scophShirtNum").value = response.payload.results[0].scophShirtNum;
-                    document.getElementById("ifmsaHoodie").value = response.payload.results[0].ifmsaHoodie;
-                    document.getElementById("ifmsaHoodieNum").value = response.payload.results[0].ifmsaHoodieNum;
                     document.getElementById("ifmsaTShirt").value = response.payload.results[0].ifmsaTShirt;
                     document.getElementById("ifmsaTShirtNum").value = response.payload.results[0].ifmsaTShirtNum;
 
@@ -494,8 +464,6 @@
                 "scomeShirtNum": scomeShirtNum,
                 "scophShirt": scophShirt,
                 "scophShirtNum": scophShirtNum,
-                "ifmsaHoodie": ifmsaHoodie,
-                "ifmsaHoodieNum": ifmsaHoodieNum,
                 "ifmsaTShirt": ifmsaTShirt,
                 "ifmsaTShirtNum": ifmsaTShirtNum
             }

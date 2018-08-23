@@ -105,7 +105,7 @@
                                     <div class="col-md-6">
                                         <br />
                                         <h6 class="sub-header">Emergency Contact Person Name</h6>
-                                        <p class="sub-header"><input type="text" name="emergencyContactFirstName" id="emergencyContactFirstName" required /></p>
+                                        <p class="sub-header"><input type="text" name="emergencycontactfirstName" id="emergencyContactFirstName" required /></p>
                                         <br />
 
                                     </div>
@@ -113,21 +113,21 @@
                                     <div class="col-md-6">
                                         <br />
                                         <h6 class="sub-header">Emergency Contact Person Number</h6>
-                                        <p class="sub-header"><input type="number" name="emergencyContactNumber" id="emergencyContactNumber" required /></p>
+                                        <p class="sub-header"><input type="number" name="emergencycontactnumber" id="emergencyContactNumber" required /></p>
                                         <br />
                                     </div>
 
                                     <div class="col-md-6">
                                         <br />
                                         <h6 class="sub-header">Emergency Contact Person Email</h6>
-                                        <p class="sub-header"><input type="email" name="emergencyContactEmail" id="emergencyContactEmail" required /></p>
+                                        <p class="sub-header"><input type="email" name="emergencycontactemail" id="emergencyContactEmail" required /></p>
                                         <br />
                                     </div>
 
                                     <div class="col-md-6">
                                             <br />
                                             <h6 class="sub-header">Special Diet / Allergies / Medical Condition we should know about</h6>
-                                            <p class="sub-header"><input type="text" name="specialDiet" id="specialDiet" required /></p>
+                                            <p class="sub-header"><input type="text" name="specialdiet" id="specialDiet" required /></p>
                                             <br />
                                         </div>
 
@@ -136,6 +136,7 @@
 
                                 <div class="row">
                                     <div class="col-md-6 text-center">
+                                        <div class="sub-header wait-color" id="returnSuccess"></div>
                                         <div class="sub-header fail-color" id="returnError"></div>
                                     </div>
                                     <div class="col-md-3 text-center previous-page-padd">
@@ -273,7 +274,8 @@
                 function(response){
                     console.log(response);
                     if (response.status_code === 619) {
-                        document.getElementById("setLoading").innerHTML = "Congratulations. You have successfully registered for the event. Please log out and wait for a confirmation email. Thank you.";
+                        document.getElementById("closeMod").click();
+                        document.getElementById("returnSuccess").innerHTML = "Congratulations. You have successfully registered for the event. Please log out and wait for a confirmation email. Thank you.";
                     }
                     else {
                         document.getElementById("closeMod").click();
