@@ -1281,7 +1281,6 @@
 
 
             var file = document.getElementById("file-input").files[0];
-            console.log(file)
 
             if(file === undefined) {
 
@@ -1296,7 +1295,13 @@
                         "birthday": birthDay,
                         "birthmonth": birthMonth,
                         "birthyear": birthYear,
-                        "email": emailAddress
+                        "email": emailAddress,
+                        "residencecountry": residencyCountry,
+                        "birthcountry": birthCountry,
+                        "postalcode": postalCode,
+                        "city": city,
+                        "streetaddress": streetAddress,
+                        "facebookurl": facebookProfile
                     }
 
                 SDK.updateData("conferenceForm", "registration", "email", emailAddress, data,
@@ -1339,7 +1344,13 @@
                         "birthday": birthDay,
                         "birthmonth": birthMonth,
                         "birthyear": birthYear,
-                        "email": emailAddress
+                        "email": emailAddress,
+                        "residencecountry": residencyCountry,
+                        "birthcountry": birthCountry,
+                        "postalcode": postalCode,
+                        "city": city,
+                        "streetaddress": streetAddress,
+                        "facebookurl": facebookProfile
                     }
 
                 SDK.updateData("conferenceForm", "registration", "email", emailAddress, data,
