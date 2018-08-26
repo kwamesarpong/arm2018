@@ -79,7 +79,7 @@
                         </button>
                     </div>
                     <div class="col-md-4 text-right">
-                        <button onclick="event.preventDefault(); logOut();">Log out</button>
+                        <!-- <button onclick="event.preventDefault(); logOut();">Log out</button> -->
                     </div>
                 </div>
             </div>
@@ -110,9 +110,10 @@
                                         
                                             <input id="file-input" type="file" accept="image/*" name="img" />
                                         </div>
-                                        <p>Upload your personal photo in png or jpg format. (Limit 3MB) <br />
+                                        <p class="sub-header">Upload your personal photo in png or jpg format. (Limit 3MB) <br />
                                             This will appear on your badge/tag.</p>
                                         <hr />
+                                        <p class="sub-header fail-color" id="picError"></p>
                                     </div>
 
                                     <div class="col-md-6">
@@ -1284,7 +1285,9 @@
 
             if(file === undefined) {
 
-                data = {
+                document.getElementById("returnError").innerHTML = "Please upload a picture";
+
+                /* data = {
                         "firstname": firstName,
                         "lastname": lastName,
                         "badgename": preferredName,
@@ -1314,7 +1317,7 @@
                             document.getElementById("closeMod").click();
                             document.getElementById("returnError").innerHTML = "Cannot save details at this time. Please try later!";
                         }
-                    });
+                    }); */
 
             }
             else {
