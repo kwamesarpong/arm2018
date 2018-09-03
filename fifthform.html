@@ -73,6 +73,9 @@
                         <!-- <div class="sub-header loading-message-div">
                             <p id="waitloading" class="loading-message"></p>
                         </div> -->
+                        <button type="button" id="saveModBut" class="btn btn-primary loading-modal" data-toggle="modal" data-target="#newModal">
+                            Open saved
+                        </button>
                         <button type="button" id="lodmod" class="btn btn-primary loading-modal" data-toggle="modal" data-target="#myModal">
                             Open modal
                         </button>
@@ -144,7 +147,7 @@
                                         <a href="fourthform.html" class="sub-header next-page-link">Previous Page</a>
                                     </div>
                                     <div class="col-md-3">
-                                        <button type="submit" class="sub-header">Save Everything</button>
+                                        <button type="submit" class="sub-header">Submit Details</button>
                                     </div>
                                 </div>
                             </form>
@@ -177,6 +180,20 @@
                     <div class="modal-body text-center">
                         <p class="sub-header modal-body-padd">Please wait ...</p>
                         <button type="button" id="closeMod" class="btn btn-danger loading-modal" data-dismiss="modal">Close</button>
+                    </div>
+                    
+                </div>
+                </div>
+            </div>
+
+            <div class="modal fade modal-position" id="newModal">
+                <div class="modal-dialog">
+                <div class="modal-content">
+                    
+                    <!-- Modal body -->
+                    <div class="modal-body text-center">
+                        <p class="sub-header modal-body-padd">Successfully submitted form! You can log out and log in at anytime to update details.</p>
+                        <button type="button" id="saveMod" class="btn btn-danger" data-dismiss="modal">Close</button>
                     </div>
                     
                 </div>
@@ -276,6 +293,7 @@
                     if (response.status_code === 619) {
                         document.getElementById("closeMod").click();
                         document.getElementById("returnSuccess").innerHTML = "Congratulations. You have successfully registered for the event. You can log out and log in anytime to update your details. Thank you.";
+                        document.getElementById("saveModBut").click();
                     }
                     else {
                         document.getElementById("closeMod").click();
