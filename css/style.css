@@ -364,6 +364,24 @@ input:checked + .slider:before {
     padding: 30px 0px;
 }
 
+.spon-knust {
+    width: 60%;
+}
+
+.spon-msa {
+    margin-top: 30px;
+    width: 80%;
+}
+
+.spon-spec {
+    margin-top: 70px;
+    width: 100%;
+}
+
+.spon-who {
+    margin-top: 30px;
+    width: 100%;
+}
 /* .loading-message-div {
     padding: 0px 50px;
 }
